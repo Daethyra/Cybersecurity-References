@@ -1,0 +1,36 @@
+#create branch, merge, and push to GitHub
+git branch [branch name] #creates branch of the specified repository
+
+git checkout [branch name] #selects the specified branch
+
+git status #shows changes that will be committed on the current branch
+
+git add -A #adds all files to staging directory
+
+git push -u origin [branch name] #"origin" is the remote repository
+
+git pull origin master #pulls in all changes. checks for changes made to the specified branch made by any developer
+
+git merge [branch name] 
+
+git push origin [branch name] #uploads changes to specified branch
+
+
+-----
+#lists all local and remote branches
+git branch -a
+
+#view information about remote repository
+git remote -v
+
+#how to review changes made to code
+git diff #shows changes made to code
+git status #lists changes ready to be committed
+git pull
+git commit -m "Basic code commit comment"
+
+#delete branch
+git branch --merged
+git branch -d [branch name]
+git branch -a
+git push origin --delete [branch name]
