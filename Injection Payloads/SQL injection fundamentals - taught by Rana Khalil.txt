@@ -1,0 +1,69 @@
+#SQL injection fundamentals
+
+Important to remember: Most critical vulnerabilities are found in logic flaws that a scanner cannot find on its own, or the vulnerability is embedded in a page or technology that the scanner cannot crawl.
+
+Finding SQLi vulnerabilities
+
+	Black Box Testing
+1) Map the application(List all attack vectors) -- Send all requests through Burp
+	walk through all pages accessible to attacker
+	make note of all input vectors that talk to database
+	try to understand business logic of application
+	find subdomains
+	enumerate directories
+
+2) Fuzz the application 
+		', ", --
+	Try to output error
+		Submit boolean conditions such as OR 1=1 and OR 1=2
+		add SQL characters to the input vectors and look for unusual responses
+			', ", --
+	Submit Payloads designed to trigger time delays, look for response time differences
+	Submit out of band connection payloads
+		Vulnerability is confirmed upon HTTP request or DNS lookup by victim server
+
+	White Box Testing
+1) Enable web server logging
+	errors will be generated when SQL injection exists, and 
+2) Enable database logging
+	check database logs when payloads after payloads are submitted to see what characters make it through to the database
+3) Map the application
+	note down input vectors
+	Regex search for all instances where the database is accessed
+
+
+
+##	How to Exploit SQLi
+1) Submit SQL-specific characters such as ' or ", and look for errors or anomalies
+2) Exploit Union-Based SQLi
+	Rules:
+		-the number and the order of the columns must be the same in all queries, even the ones where malicious code has been injected
+		-data types must be compatible
+	Exploitation:
+		-figure out number of columns queried by database
+		-figure out the data types of the columns(str or int)
+	Determine number of columns:
+		-with order by clauses:
+			example query:
+				select title, cost from product where id=1 order by 1
+			-incrementally inject a series of ORDER BY clauses until you get an error or observe a different behaviour in the application
+				ex: order by 1--
+					order by 2--
+					order by 3--
+		-with null values clauses:
+			example query:
+				select title, cost from product where id=1 UNION SELECT NULL--
+			-incrementally inject a series of UNION SELECT payloads specifying a different number of null values until you no longer get an error
+				ex: ' UNION SELECT NULL--
+					' UNION SELECT NULL, NULL--
+					' UNION SELECT NULL, NULL, NULL--
+	Exploit Union-based SQLi -- test each column for the acceptance of string input 
+			example query:  ' UNION SELECT 'a',NULL--
+							' UNION SELECT NULL,'a'--
+	Exploit Boolean-based blind SQLi
+		1) Submit a boolean condition query that evaluates to False and notate the response
+		2) Submit a boolean condition query that evaluates to True and notate the response
+		3) Use SQLmap
+	Exploit Time based blind SQLi
+		1) Submit a payload that pauses the application for a specified period of time
+		2) Submit a series of TRUE/FALSE questions to enumerate database data

