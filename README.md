@@ -5,6 +5,10 @@ Welcome to the Cybersecurity-References repository! This is a curated collection
 
 ## 📁 Directory Structure
 
+### [Automation](./Automation)
+
+For automation enthusiasts, this directory contains simple yet powerful scripts for streamlining certain tasks. 
+
 ### [Commands References](./Commands%20References)
 
 This directory contains a collection of command references that can be invaluable for cybersecurity professionals. It includes a variety of commands for different tools and platforms.
@@ -13,27 +17,9 @@ This directory contains a collection of command references that can be invaluabl
 
 Here you'll find a collection of payloads for various injection techniques. This is particularly useful for penetration testers and security researchers who are looking to test the security of web applications.
 
-### [SnowflakeProxy](Automation/SnowflakeProxy)
-
-This directory contains resources related to SnowflakeProxy, a WebRTC proxy for the Tor network. It's a treasure trove for those interested in network security and anonymity.
-
 ### [UsefulRepositories](./UsefulRepositories)
 
 This is a meta-directory containing submodules of other GitHub repositories that are useful for cybersecurity. It's like a library of libraries, each packed with its own set of resources.
-
-### [automation](./automation)
-
-For automation enthusiasts, this directory contains a Python script named `simple-streamer.py`. It's a simple yet powerful script for streamlining certain tasks.
-
-## 📄 Files
-
-### [.gitmodules](./.gitmodules)
-
-This file holds information about the submodules contained in this repository. It's essential for linking to the repositories contained within the UsefulRepositories directory.
-
-### [LICENSE](./LICENSE)
-
-This file contains the license information for this repository. It's important to read and understand the terms under which the contents of this repository are shared.
 
 ## 🤝 Contributing
 
@@ -48,6 +34,8 @@ Contributions are what make the open-source community such an amazing place to l
 ## 📜 License
 
 Distributed under the AGPL-3.0 License. See `LICENSE` for more information.
+
+It's important to read and understand the terms under which the contents of this repository are shared, and the repositories contained within.
 
 ## 🚀 Let's Get Started!
 
