@@ -3,34 +3,34 @@
 	url = https://github.com/TheonlyIcebear/SepticX
 [submodule "UsefulRepositories/ProxyBroker"]
 	path = ProxyBroker
-	url = https://github.com/constverum/ProxyBroker.git
+	url = https://github.com/constverum/ProxyBroker
 [submodule "UsefulRepositories/NBP"]
 	path = NBP
-	url = https://github.com/NeverWonderLand/NBP.git
+	url = https://github.com/NeverWonderLand/NBP
 [submodule "UsefulRepositories/ProcessHacker"]
 	path = ProcessHacker
-	url = https://github.com/PKRoma/ProcessHacker.git
+	url = https://github.com/PKRoma/ProcessHacker
 [submodule "UsefulRepositories/AutoRecon"]
 	path = AutoRecon
-	url = https://github.com/Tib3rius/AutoRecon.git
+	url = https://github.com/Tib3rius/AutoRecon
 [submodule "UsefulRepositories/find-you"]
 	path = find-you
-	url = https://github.com/positive-security/find-you.git
+	url = https://github.com/positive-security/find-you
 [submodule "UsefulRepositories/xray"]
 	path = xray
-	url = https://github.com/evilsocket/xray.git
+	url = https://github.com/evilsocket/xray
 [submodule "UsefulRepositories/CheatSheet"]
 	path = CheatSheet
-	url = https://github.com/DennisFeldbusch/CheatSheet.git
+	url = https://github.com/DennisFeldbusch/CheatSheet
 [submodule "UsefulRepositories/awesome-cybersecurity-blueteam"]
 	path = awesome-cybersecurity-blueteam
-	url = https://github.com/fabacab/awesome-cybersecurity-blueteam.git
+	url = https://github.com/fabacab/awesome-cybersecurity-blueteam
 [submodule "UsefulRepositories/awesome-malware-analysis"]
 	path = awesome-malware-analysis
-	url = https://github.com/rshipp/awesome-malware-analysis.git
+	url = https://github.com/rshipp/awesome-malware-analysis
 [submodule "UsefulRepositories/PEASS-ng"]
 	path = PEASS-ng
-	url = https://github.com/carlospolop/PEASS-ng.git
+	url = https://github.com/carlospolop/PEASS-ng
 [submodule "UsefulRepositories/PurplePanda"]
 	path = PurplePanda
-	url = https://github.com/carlospolop/PurplePanda.git
+	url = https://github.com/carlospolop/PurplePanda
