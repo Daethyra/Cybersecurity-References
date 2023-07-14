@@ -4,6 +4,11 @@ This repository contains a collection of useful repositories for cybersecurity p
 
 ## Offensive
 
+### [wesng](https://github.com/bitsadmin/wesng)
+
+- **Description**: Windows Exploit Suggester - Next Generation (WES-NG) is a tool based on the output of Windows' systeminfo utility which provides the list of vulnerabilities the OS is vulnerable to, including any exploits for these vulnerabilities. Every Windows OS between Windows XP and Windows 11, including their Windows Server counterparts, is supported.
+- **License**: BSD-3-Clause License
+
 ### [SepticX](https://github.com/TheonlyIcebear/SepticX)
 
 - **Description**: SepticX is a post-exploitation tool that is capable of automating a wide range of tasks, including gathering system information, executing system commands, and more.
