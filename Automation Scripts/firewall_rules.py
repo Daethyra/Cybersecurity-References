@@ -7,7 +7,9 @@ import time
 from typing import List, Optional
 
 # Constants and Configurations
-URL = os.getenv("BLOCKLIST_URL", "https://example.com/blocklist.csv")
+URL = "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"
+DELETE_RULE_TEMPLATE = "netsh advfirewall firewall delete rule name='BadIP_{direction}_{ip}'"
+BLOCK_RULE_TEMPLATE = "netsh advfirewall firewall add rule name='BadIP_{direction}_{ip}' dir={direction} action=block remoteip={ip}"
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", 3))
 RETRY_DELAY = int(os.getenv("RETRY_DELAY", 2))
 
@@ -45,8 +47,8 @@ def parse_csv(data: str) -> List[List[str]]:
 
 def update_firewall_rule(ip: str, direction: str) -> None:
     """Update single firewall rule."""
-    delete_cmd = f"delete rule name='block_{direction}_{ip}'"
-    add_cmd = f"add rule name='block_{direction}_{ip}' dir={direction} action=block remoteip={ip}"
+    delete_cmd = DELETE_RULE_TEMPLATE.format(direction=direction, ip=ip)
+    add_cmd = BLOCK_RULE_TEMPLATE.format(direction=direction, ip=ip)
 
     try:
         execute_command(delete_cmd)
