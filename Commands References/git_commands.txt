@@ -5,7 +5,7 @@ git checkout [branch name] #selects the specified branch
 
 git status #shows changes that will be committed on the current branch
 
-git add -A #adds all files to staging directory
+git add . #Stages all files in the currernt working directory 
 
 git push -u origin [branch name] #"origin" is the remote repository
 

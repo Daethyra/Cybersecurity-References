@@ -5,7 +5,7 @@ Welcome to the Cybersecurity-References repository! This is a curated collection
 
 ## 📁 Directory Structure
 
-### [Automation](./Automation)
+### [Automation](./Automation%20Scripts)
 
 For automation enthusiasts, this directory contains simple yet powerful scripts for streamlining certain tasks. 
 
@@ -19,7 +19,7 @@ Here you'll find a collection of payloads for various injection techniques. This
 
 ### [UsefulRepositories](./UsefulRepositories)
 
-This is a meta-directory containing submodules of other GitHub repositories that are useful for cybersecurity. It's like a library of libraries, each packed with its own set of resources.
+This is a meta-directory containing submodules of other GitHub repositories that are useful for cybersecurity. It's like a library of libraries, each packed with its own set of resources. Please review the [README](./UsefulRepositories/README.md)
 
 ## 🤝 Contributing
 
@@ -33,14 +33,14 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## 📜 License
 
-Distributed under the AGPL-3.0 License. See `LICENSE` for more information.
+Distributed under the AGPL-3.0 License. See [LICENSE](./LICENSE) for more information.
 
-It's important to read and understand the terms under which the contents of this repository are shared, and the repositories contained within.
+It's important to *read and understand* the *terms* under which the contents *of* this repository are shared, and *the repositories contained within*.
 
 ## 🚀 Let's Get Started!
 
 Dive in, explore, and don't hesitate to contribute. This repository is a growing collection, and your insights could be the next great addition.
 
-Remember, with great power comes great responsibility. Use these resources responsibly and ethically.
+*Remember, with great power comes great responsibility. Use these resources responsibly and ethically.*
 
 Happy Exploring! 🎩✨
