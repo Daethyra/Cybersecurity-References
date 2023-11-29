@@ -1,1 +1,0 @@
-pip freeze | ? { $_ -notmatch "^-e" } | %{pip uninstall $_ -y}
