@@ -1,9 +1,16 @@
 # Web App Hacking Vulnerabilities
 
+This is a living-master-document for the "Web-Applications" subdirectory. Here you'll find more generalized information. See the other markdown files in this directory for more specifics and payload examples.
+
 ## Table of Contents
 
 - [Server Side Request Forgery (SSRF)](#server-side-request-forgery-ssrf)
     - [Steps for Indentifying SSRF](#steps-for-identifying-ssrf)
+    - [Exploiting SSRF Vulnerabilities](#exploiting-ssrf-vulnerabilities)
+- [Reconnaissance Tips](#reconnaissance-tips)
+    - [Fuzzing with Ffuf](#fuzzing-with-ffuf)
+
+---
 
 ### Tools for Exploiting Web Vulnerabilities:
     - [Burp Suite](https://portswigger.net/burp/communitydownload)
@@ -36,22 +43,22 @@ What SSRF is *NOT*:
 
 ## Reconnaissance Tips
 
-### Tools
-- Fuzzing w/ [ffuf](https://github.com/ffuf/ffuf) | (Sources: [1](https://youtu.be/0v1CTSyRpMU "NahamSec: What is Fuzzing"), [2](https://youtu.be/YbIEXJhZxUk "NahamSec: Don't Make This Recon Mistake"))
-    - 'File' and 'Path' fuzzing
-        - Finding Backup logs
-            - Use a wordlist of dates (ex. 2022-01-01, 20240101, 2022-01-01T00:00:00, etc.)
-            - Use `-e` to search for multiple file extension types (ex. `-e log,txt`)
-    - Recursion [1](https://youtu.be/0v1CTSyRpMU?si=0b5i_1Y0PEw06hGS&t=299 "NahamSec: What is Fuzzing")
-        - Recursion causes the fuzzer to search for files and folders within any folders it finds within the original target
-            - `Found: /admin/`, `Beginning new Search: /admin/*/`
-    - Response Codes
-        - Search on 200,204,301,302,307,401,403,405,415
-            - ffuf argument: `-mc 200,204,301,302,307,401,403,405,415`
-        - What to do when all targets return a '200' [(1)](https://youtu.be/0v1CTSyRpMU?si=G8AL5ThITsM6RlFm&t=572 "NahamSec: What is Fuzzing")
-            - Filter by file size:
-                - Find the repeated values in '200' returns
-                    - Exclude on: file size
-                        - ffuf argument: `-fs 699`
-                    - Exclude on: word count
-                        - ffuf argument: `-fw 126`
+### Fuzzing with [ffuf](https://github.com/ffuf/ffuf)
+Sources: [1](https://youtu.be/0v1CTSyRpMU "NahamSec: What is Fuzzing"), [2](https://youtu.be/YbIEXJhZxUk "NahamSec: Don't Make This Recon Mistake")
+- 'File' and 'Path' fuzzing
+    - Finding Backup logs
+        - Use a wordlist of dates (ex. 2022-01-01, 20240101, 2022-01-01T00:00:00, etc.)
+        - Use `-e` to search for multiple file extension types (ex. `-e log,txt`)
+- Recursion [1](https://youtu.be/0v1CTSyRpMU?si=0b5i_1Y0PEw06hGS&t=299 "NahamSec: What is Fuzzing")
+    - Recursion causes the fuzzer to search for files and folders within any folders it finds within the original target
+        - `Found: /admin/`, `Beginning new Search: /admin/*/`
+- Response Codes
+    - Search on 200,204,301,302,307,401,403,405,415
+        - ffuf argument: `-mc 200,204,301,302,307,401,403,405,415`
+    - What to do when all targets return a '200' [(1)](https://youtu.be/0v1CTSyRpMU?si=G8AL5ThITsM6RlFm&t=572 "NahamSec: What is Fuzzing")
+        - Filter by file size:
+            - Find the repeated values in '200' returns
+                - Exclude on: file size
+                    - ffuf argument: `-fs 699`
+                - Exclude on: word count
+                    - ffuf argument: `-fw 126`
