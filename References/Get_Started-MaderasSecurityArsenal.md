@@ -1,6 +1,8 @@
 The arsenal, armory & library by Maderas (@hackermaderas, #CyberpunkisNow) 6/8/2019
 
 Original / 1st version here: https://pastebin.com/rMw4WbhX
+
+Wayback Machine: https://web.archive.org/web/20200606111007/https://pastebin.com/rMw4WbhX
 ___________________________________________________________________________________
 
 # Basic knowledge requirements for Red Teaming, PenTesting, Hacking & Cybersecurity
