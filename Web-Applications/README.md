@@ -46,6 +46,7 @@ Sources: [1](https://youtu.be/0v1CTSyRpMU "NahamSec: What is Fuzzing"), [2](http
     - URL parameters privilege escalation ex: `?user=10` -> `?user=1`
 3. Use a proxy engine to replay/repeat requests that contain static data
     - Ex. Suppose we submit a form to save our address to our profile, our request header contains: `POST /users/1739-3/address HTTP/1.1`, which should stand out as a predictable static value
+    - **Important**: Just because a `GET` request doesn't work, or is blocked, doesn't mean a `POST`, `PUT`, or `DELETE` request won't work.
 
 ### Exploiting IDOR Vulnerabilities:
 1. *Incrementing/Decrementing Identifiers*: Manually change the identifier values in the URL or request parameters to see if you can access other users' data.
