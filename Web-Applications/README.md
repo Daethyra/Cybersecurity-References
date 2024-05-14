@@ -157,3 +157,4 @@ Here’s what happens:
 2. `;` ends the current statement.
 3. `alert('XSS');` is the injected script.
 4. `//` starts a single-line comment, commenting out the rest of the line.
+    - One could also use `/*` to start a multi-line comment, nullifying the rest of the code block.
