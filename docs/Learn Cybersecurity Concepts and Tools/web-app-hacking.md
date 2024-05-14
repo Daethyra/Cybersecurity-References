@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Server Side Request Forgery (SSRF)](#server-side-request-forgery-ssrf)
-    - 
+    - [Steps for Indentifying SSRF](#steps-for-identifying-ssrf)
 
 ### Tools for Exploiting Web Vulnerabilities:
     - [Burp Suite](https://portswigger.net/burp/communitydownload)
@@ -25,7 +25,7 @@ What SSRF is *NOT*:
     - A request from the client (ex. a browser)
     - CSRF (Cross-Site Request Forgery): CSRF involves tricking a user into making unwanted requests to another site where they are authenticated.
 
-**Exploiting SSRF Vulnerabilities**:
+### Exploiting SSRF Vulnerabilities:
 
 1. *Internal Network Access*: Craft malicious URLs to access internal network services and resources that are not exposed to the internet.
 2. *Sensitive Data Retrieval*: Use SSRF to access internal APIs or services that may return sensitive information, such as configuration files, credentials, or user data.
