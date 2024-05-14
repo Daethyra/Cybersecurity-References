@@ -1,17 +1,21 @@
 
-# Cybersecurity-References 🛡️🔒
+# Cybersecurity References 🛡️🔒
 
 Welcome to the a curated collection of cybersecurity resources, tools, and references for people of all skill levels.
 
 ## 📁 Directory Structure
 
-### [Automation](./AutomationScripts)
+### [Automation](./Automation-Scripts)
 
-For automation enthusiasts, this directory contains simple yet powerful scripts for streamlining certain tasks. 
+Personal automation scripts are kept here.
+
+[`firewall_rules.py`](./Automation-Scripts/firewall_rules.py) takes in the URL of a CSV file to block known problematic IP addresses. The default URL downloads the "Botnet C2 Indicators of Compromise (IOCs)" from FEODOtracker, which contains "information on tracked botnet c2s but also IP addresses that were acting as a botnet C2 within the **past 30 days**."
 
 ### [References](./References)
 
 This directory contains various files. `git` commands, [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg), printed cybersecurity blog posts, and power commands using tools like `awk`.
+
+The ["Get Started"](./References/Get_Started-MaderasSecurityArsenal.md) guide by Maderas provides a good overview of the skills that one is expected to have in the cybersecurity industry. The guide comes with tons of lists that all contain tons of links to different resources like educational materials, software tools, and guides to cybersecurity concepts.
 
 ### [Documents](./Documents)
 
@@ -37,6 +41,7 @@ This is a meta-directory with links to useful cybersecurity-related GitHub repos
 Please review the [README](./UsefulRepositories/README.md)
 
 ### [Web-Applications](./Web-Applications)
+
 Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF], and [CORS](./Web-Applications/CORS.md) are just a few examples. The [WebApp Exploit Checklist](./Web-Applications/WebApp-ExploitsChecklist.pdf) is a great visual reference.
 
 ## 📜 License
