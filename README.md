@@ -41,6 +41,4 @@ Here you'll find documents for common web application vulnerabilities, like thos
 
 ## 📜 License
 
-Distributed under the AGPL-3.0 License. See [LICENSE](./LICENSE) for more information.
-
-It's important to *read and understand* the *terms* under which the contents *of* this repository are shared, and *the repositories contained within*.
+Distributed under the GNU AGPL-3.0 License. See [LICENSE](./LICENSE) for more information.
