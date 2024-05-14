@@ -25,11 +25,16 @@ This directory contains a collection of documents that can be useful for cyberse
     - [Framework for Improving Critical Infrastructure Cybersecurity](./Documents/Compliance/NIST.CSWP.04162018.pdf "PDF")
 - [Continuous Learning](./Documents/Continuous-Learning/)
     - [Generative AI](./Documents/Continuous-Learning/Generative-AI/)
-    - [Privacy](./Documents/Continuous-Learning/Privacy/)
+    - [Privacy](./Documents/Continuous-Learning/Privacy/ "Learn about digital privacy.")
+    - [US State Surveillance & Psychological Operations](./Documents/Continuous-Learning/US-State_Surveillance-Psyops/ "Learn about state-sanctioned psyops in the US and abroad.")
+- [Starter Penetration Testing Resources by TCM Security](./Documents/Pentest_Resources-TCM_Security/ "Resources for pentesters in the making.")
+- [Sample Datasets](./Documents/Sample_Datasets/ "A collection of datasets to practice working on.")
 
 ### [UsefulRepositories](./UsefulRepositories)
 
-This is a meta-directory with links to useful cybersecurity-related GitHub repositories. Please review the [README](./UsefulRepositories/README.md)
+This is a meta-directory with links to useful cybersecurity-related GitHub repositories. You'll find offensive, defensive, and multi-purpose tools.
+
+Please review the [README](./UsefulRepositories/README.md)
 
 ### [Web-Applications](./Web-Applications)
 Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF]
