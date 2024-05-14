@@ -41,12 +41,10 @@ Sources: [1](https://youtu.be/0v1CTSyRpMU "NahamSec: What is Fuzzing"), [2](http
 
 ### Steps for Indentifying IDOR:
 1. Notice where user's entered data is reflected in the application
-    - Ex. User reviews, profile pictures
-2. Look for places where user generated data is directly referenced 
-    - URL parameters privilege escalation ex: `?user=10` -> `?user=1`
+2. Look for places where user generated data is directly referenced
 3. Use a proxy engine to replay/repeat requests that contain static data
-    - Ex. Suppose we submit a form to save our address to our profile, our request header contains: `POST /users/1739-3/address HTTP/1.1`, which should stand out as a predictable static value
-    - **Important**: Just because a `GET` request doesn't work, or is blocked, doesn't mean a `POST`, `PUT`, or `DELETE` request won't work.
+
+**Important**: Just because a `GET` request doesn't work, or is blocked, doesn't mean a `POST`, `PUT`, or `DELETE` request won't work.
 
 ### Exploiting IDOR Vulnerabilities:
 1. *Incrementing/Decrementing Identifiers*: Manually change the identifier values in the URL or request parameters to see if you can access other users' data.
@@ -78,3 +76,84 @@ What SSRF is *NOT*:
 4. *Metadata Services*: In cloud environments, use SSRF to access metadata services (e.g., AWS EC2 metadata service) to retrieve instance credentials and other sensitive information.
     - Try querying https://169.254.169.254/metadata
         - Look for metadata keys that you can use to login
+
+
+## Cross-Site Scripting (XSS)
+**Definition**: A type of security vulnerability that essentially allows attackers to execute some code in a vulnerable web application. There are three main types of XSS:
+- Reflected XSS, where malicious code comes from the current HTTP request
+- Stored XSS, where malicious code comes from the server's database
+- DOM-based XSS, where vulnerablities exist in client-side code rather than server-side code
+
+**Notes**:
+- Your injection payload *must* close out whatever context it's in (ex. `</script>`, `</title>`, `</p>`), therefore, **copy/pasting payloads is WOEFULLY inefficient**.
+    - First, observe the applications client-side code for the context a given input field is in. The start of your payload is the closing of that context.
+- Break out of Context using comments:
+    - JavaScript: `//`
+    - HTML: `<!-- -->`
+
+### Steps for Indentifying Reflected XSS:
+1. Note down every user input field you can find in the application (Ex. URL parameters, form fields, etc.)
+2. Confirm that you can reflect JavaScript code in the web application
+3. Having trouble? Ensure your payload closes the context it's in.
+
+### Exploiting XSS Vulnerabilities:
+1. Test all input fields using simple elements
+    - Ex. `"><u>test123`
+2. Add an event handler to your element to further test your control over the application
+    - Ex. `<u/onmouseover=alert(document.cookie)>test123`; `<img src=x onerror=alert(document.cookie)>`
+
+### Examples of Reflected XSS:
+
+#### JavaScript
+
+Consider a web application that includes user input in an HTML attribute without proper sanitization:
+
+```javascript
+var userInput = "USER_INPUT";
+document.getElementById('output').innerHTML = userInput;
+```
+
+If an attacker inputs something like:
+
+```javascript
+"; alert('XSS'); //
+```
+
+The resulting JavaScript would be:
+
+```javascript
+var userInput = ""; alert('XSS'); //";
+document.getElementById('output').innerHTML = userInput;
+```
+
+Here’s what happens:
+1. The `"` closes the `value` attribute.
+2. `-->` ends the HTML comment, effectively breaking out of the attribute context.
+3. `<script>alert('XSS')</script>` is the injected script.
+4. `<!--` starts a new comment, which comments out the rest of the attribute.
+
+#### HTML
+
+Consider a web application that includes user input within a JavaScript context without proper sanitization:
+
+```html
+<input type="text" value="USER_INPUT">
+```
+
+If an attacker inputs something like:
+
+```html
+" --><script>alert('XSS')</script><!--
+```
+
+The resulting HTML would be:
+
+```html
+<input type="text" value="" --><script>alert('XSS')</script><!--">
+```
+
+Here’s what happens:
+1. The `"` closes the string.
+2. `;` ends the current statement.
+3. `alert('XSS');` is the injected script.
+4. `//` starts a single-line comment, commenting out the rest of the line.
