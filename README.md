@@ -9,9 +9,9 @@ Welcome to the a curated collection of cybersecurity resources, tools, and refer
 
 For automation enthusiasts, this directory contains simple yet powerful scripts for streamlining certain tasks. 
 
-### [Command References](./Command-References)
+### [References](./References)
 
-This directory contains a collection of command references that can be invaluable for cybersecurity professionals. It includes a variety of commands for different tools and platforms.
+This directory contains various files. `git` commands, [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg), printed cybersecurity blog posts, and power commands using tools like `awk`.
 
 ### [Documents](./Documents)
 
