@@ -1,11 +1,14 @@
 # Web App Hacking
 
-Notes on fundamental concepts and online tools and resources.
-
 ## Table of Contents
 
 - [Server Side Request Forgery (SSRF)](#server-side-request-forgery-ssrf)
     - 
+
+### Tools for Exploiting Web Vulnerabilities:
+    - [Burp Suite](https://portswigger.net/burp/communitydownload)
+    - [Caido](https://caido.io/download)
+    - [OWASP ZAP](https://www.zaproxy.org/download/)
 
 ---
 
@@ -30,11 +33,6 @@ What SSRF is *NOT*:
 4. *Metadata Services*: In cloud environments, use SSRF to access metadata services (e.g., AWS EC2 metadata service) to retrieve instance credentials and other sensitive information.
     - Try querying https://169.254.169.254/metadata
         - Look for metadata keys that you can use to login
-
-**Tools for Exploiting SSRF Vulnerabilities**:
-    - [Burp Suite](https://portswigger.net/burp/communitydownload)
-    - [Caido](https://caido.io/download)
-    - [OWASP ZAP](https://www.zaproxy.org/download/)
 
 ## Reconnaissance Tips
 
