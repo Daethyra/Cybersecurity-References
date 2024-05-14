@@ -8,11 +8,6 @@ During testing, you may wish to prove a CSRF vulnerability exists before further
 
 CSRF attacks are possible if the website enables attackers to set cookies in a victim's browser, leading to unauthorized actions being performed.
 
-### Key Terminology
-
-- WSA: Web Security Academy
-- CSRF: Cross-Site Request Forgery
-
 ### Practice Lab
 
 For practical experience and further insights into CSRF vulnerabilities, you can access the [Practice Lab](https://portswigger.net/web-security/csrf).
