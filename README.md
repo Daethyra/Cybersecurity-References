@@ -15,6 +15,18 @@ This directory contains a collection of command references that can be invaluabl
 
 ### [Documents](./Documents)
 
+This directory contains a collection of documents that can be useful for cybersecurity professionals. It includes a variety of documents that can be useful for different purposes.
+- [Compliance](./Documents/Compliance)
+    - [Security and Privacy Controls for Information Systems and Organizations](./Documents/Compliance//800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf "PDF")
+        - [Spreadsheet](./Documents/Compliance/800-53r5/sp800-53r5-control-catalog.xlsx "XLSX")
+    - [Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule](./Documents/Compliance/800-66r2/NIST.SP.800-66r2.pdf "PDF")
+    - [Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations](./Documents/Compliance/800-171/NIST.SP.800-171r2.pdf "PDF")
+        - [Spreadsheet](./Documents/Compliance/800-171/NIST.SP.800-171r2.pdf "XLSX")
+    - [Framework for Improving Critical Infrastructure Cybersecurity](./Documents/Compliance/NIST.CSWP.04162018.pdf "PDF")
+- [Continuous Learning](./Documents/Continuous-Learning/)
+    - [Generative AI](./Documents/Continuous-Learning/Generative-AI/)
+    - [Privacy](./Documents/Continuous-Learning/Privacy/)
+
 ### [UsefulRepositories](./UsefulRepositories)
 
 This is a meta-directory with links to useful cybersecurity-related GitHub repositories. Please review the [README](./UsefulRepositories/README.md)
