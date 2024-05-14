@@ -2,6 +2,8 @@
 
 Cross-Site Request Forgery (CSRF) occurs when a web application allows an attacker to manipulate a victim's browser to perform actions on the victim's behalf without their consent.
 
+During testing, you may wish to prove a CSRF vulnerability exists before further attacking. One way to do this is through the [CSRF PoC Generator](https://security.love/CSRF-PoC-Genorator/), where you can generate proof-of-concept code to test for CSRF vulnerabilities.
+
 ## Understanding CSRF
 
 CSRF attacks are possible if the website enables attackers to set cookies in a victim's browser, leading to unauthorized actions being performed.
