@@ -38,7 +38,7 @@ This directory contains various files, notably [Maderas' list of necessary cyber
 
 This is a meta-directory with links to useful cybersecurity-related GitHub repositories. You'll find offensive, defensive, and multi-purpose tools.
 
-Please review the [README](./UsefulRepositories/README.md)
+Please see the [README](./UsefulRepositories/README.md).
 
 ### [Web-Applications](./Web-Applications)
 
