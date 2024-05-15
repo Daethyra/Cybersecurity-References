@@ -9,13 +9,13 @@ Welcome to the a curated collection of cybersecurity resources, tools, and refer
 
 Personal automation scripts are kept here.
 
-[`firewall_rules.py`](./Automation-Scripts/firewall_rules.py) takes in the URL of a CSV file to block known problematic IP addresses. The default URL downloads the "Botnet C2 Indicators of Compromise (IOCs)" from FEODOtracker, which contains "information on tracked botnet c2s but also IP addresses that were acting as a botnet C2 within the **past 30 days**."
+[`firewall_rules.py`](./Automation-Scripts/firewall_rules.py): takes in the URL of a CSV file to block known problematic IP addresses. 
+
+> The default URL downloads the "Botnet C2 Indicators of Compromise (IOCs)" from FEODOtracker, which contains "information on tracked botnet c2s but also IP addresses that were acting as a botnet C2 within the **past 30 days**."
 
 ### [References](./References)
 
-This directory contains various files. `git` commands, [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg), printed cybersecurity blog posts, and power commands using tools like `awk`.
-
-The ["Get Started"](./References/Get_Started-MaderasSecurityArsenal.md) guide by Maderas provides a good overview of the skills that one is expected to have in the cybersecurity industry. The guide comes with tons of lists that all contain tons of links to different resources like educational materials, software tools, and guides to cybersecurity concepts.
+This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./References/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./References/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
 
 ### [Documents](./Documents)
 
