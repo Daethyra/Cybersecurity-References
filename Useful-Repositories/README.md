@@ -1,14 +1,22 @@
 # Useful Repositories
 
-This repository contains a collection of useful repositories for cybersecurity professionals. The repositories are organized into labeled groups based on their intended use-case for cybersecurity (offensive, defensive, multi-purpose/purple teaming). Please note that each repository is released under its own license, so make sure to check and comply with them.
+## Table of Contents
 
-Note: `Personal favorites have been italicized.`
+- [Offensive](#offensive)
+    - [Offensive Tools](#offensive-tools)
+    - [Offensive Misc](#offensive-misc)
+- [Defensive](#defensive)
+    - [Defensive Tools](#defensive-tools)
+    - [Defensive Misc](#defensive-misc)
+- [Multi-Purpose](#multi-purpose-purple-teaming)
+    - [Multi-Purpose Tools](#multi-purpose-tools)
+    - [Multi-Purpose Misc](#multi-purpose-misc)
 
 ## Offensive
 
-### Tools
+### Offensive Tools
 
-#### *[Awesome Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)*
+#### [Awesome Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)
 - **Description**: A collection of awesome lists for hackers, pentesters & security researchers. By Hack with Github
 
 #### [AutoRecon](https://github.com/Tib3rius/AutoRecon)
@@ -44,7 +52,7 @@ Note: `Personal favorites have been italicized.`
 #### [xray](https://github.com/evilsocket/xray)
 - **Description**: XRay is a tool for network (sub)domain discovery and reconnaissance.
 
-### Misc
+### Offensive Misc
 
 #### [CheatSheet](https://github.com/DennisFeldbusch/CheatSheet)
 - **Description**: CheatSheet is a collection of cheat sheets that can be useful for defenders and security analysts.
@@ -53,7 +61,7 @@ Note: `Personal favorites have been italicized.`
 
 ## Defensive
 
-### Tools
+### Defensive Tools
 
 #### [awesome-cybersecurity-blueteam](https://github.com/fabacab/awesome-cybersecurity-blueteam)
 - **Description**: A curated collection of awesome resources, tools, and other shiny things for cybersecurity blue teams.
@@ -61,7 +69,7 @@ Note: `Personal favorites have been italicized.`
 #### [PersistenceSniper](https://github.com/last-byte/PersistenceSniper)
 - **Description**: PersistenceSniper is a Powershell module that can be used by Blue Teams, Incident Responders and System Administrators to hunt persistences implanted in Windows machines. It is also available on Powershell Gallery and it is digitally signed with a valid code signing certificate.
 
-### Misc
+### Defensive Misc
 
 #### [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 - **Description**: A curated list of awesome malware analysis tools and resources.
@@ -70,9 +78,9 @@ Note: `Personal favorites have been italicized.`
 
 ## Multi-Purpose (Purple Teaming)
 
-### Tools
+### Multi-Purpose Tools
 
-#### *[The Book of Secret Knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)*
+#### [The Book of Secret Knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
 - **Description**: This repository is a collection of various materials and tools that I use every day in my work. It contains a lot of useful information gathered in one piece. It is an invaluable source of knowledge for me that I often look back on. For everyone, really. Here everyone can find their favourite tastes. But to be perfectly honest, it is aimed towards System and Network administrators, DevOps, Pentesters, and Security Researchers.
 
 #### [PEASS-ng](https://github.com/carlospolop/PEASS-ng)
@@ -81,11 +89,9 @@ Note: `Personal favorites have been italicized.`
 #### [PurplePanda](https://github.com/carlospolop/PurplePanda)
 - **Description**: PurplePanda is a post-exploitation tool that contains several modules for various tasks such as keylogging, screen capturing, and more.
 
-### Misc
+### Multi-Purpose Misc
 
 #### [cipher387](https://github.com/cipher387)
 - **Description**: Cipher387 is Github user who has a collection of scripts and tools for cybersecurity, including both offensive and defensive resources.
 
 ---
-
-Please ensure to comply with the licenses of each repository and use them responsibly.
