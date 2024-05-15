@@ -13,10 +13,6 @@ Personal automation scripts are kept here.
 
 > The default URL downloads the "Botnet C2 Indicators of Compromise (IOCs)" from FEODOtracker, which contains "information on tracked botnet c2s but also IP addresses that were acting as a botnet C2 within the **past 30 days**."
 
-### [References](./References)
-
-This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./References/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./References/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
-
 ### [Documents](./Documents)
 
 This directory contains a collection of documents that can be useful for cybersecurity professionals. It includes a variety of documents that can be useful for different purposes.
@@ -33,6 +29,10 @@ This directory contains a collection of documents that can be useful for cyberse
     - [US State Surveillance & Psychological Operations](./Documents/Continuous-Learning/US-State_Surveillance-Psyops/ "Learn about state-sanctioned psyops in the US and abroad.")
 - [Starter Penetration Testing Resources by TCM Security](./Documents/Pentest_Resources-TCM_Security/ "Resources for pentesters in the making.")
 - [Sample Datasets](./Documents/Sample_Datasets/ "A collection of datasets to practice working on.")
+
+### [References](./References)
+
+This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./References/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./References/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
 
 ### [UsefulRepositories](./UsefulRepositories)
 
