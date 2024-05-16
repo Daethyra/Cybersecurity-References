@@ -13,6 +13,10 @@ Personal automation scripts are kept here.
 
 > The default URL downloads the "Botnet C2 Indicators of Compromise (IOCs)" from FEODOtracker, which contains "information on tracked botnet c2s but also IP addresses that were acting as a botnet C2 within the **past 30 days**."
 
+[`extract_video_audio.py`](./Automation-Scripts/extract_video_audio.py): CLI tool that creates an MP3 audio file from a MP4 file, or files in a directory.
+
+[`Reset-DockerWslIntergration.ps1`](./Automation-Scripts/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
+
 ### [Documents](./Documents)
 
 This directory contains a collection of documents that can be useful for cybersecurity professionals. It includes a variety of documents that can be useful for different purposes.
