@@ -1,7 +1,6 @@
-
 # Cybersecurity References 🛡️🔒
 
-Welcome to the a curated collection of cybersecurity resources, tools, and references for people of all skill levels.
+Welcome to my personal collection of cybersecurity resources, tools, and references.
 
 ## 📁 Directory Structure
 
