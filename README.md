@@ -24,7 +24,7 @@ This directory contains a collection of documents that can be useful for cyberse
         - [Spreadsheet](./Documents/Compliance/800-53r5/sp800-53r5-control-catalog.xlsx "XLSX")
     - [Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule](./Documents/Compliance/800-66r2/NIST.SP.800-66r2.pdf "PDF")
     - [Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations](./Documents/Compliance/800-171/NIST.SP.800-171r2.pdf "PDF")
-        - [Spreadsheet](./Documents/Compliance/800-171/NIST.SP.800-171r2.pdf "XLSX")
+        - [Spreadsheet](./Documents/Compliance/800-171/sp800-171r2-security-reqs.xlsx "XLSX")
     - [Framework for Improving Critical Infrastructure Cybersecurity](./Documents/Compliance/NIST.CSWP.04162018.pdf "PDF")
 - [Continuous Learning](./Documents/Continuous-Learning/)
     - [Generative AI](./Documents/Continuous-Learning/Generative-AI/)
@@ -46,6 +46,11 @@ Please see the [README](./UsefulRepositories/README.md).
 ### [Web-Applications](./Web-Applications)
 
 Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF], and [CORS](./Web-Applications/CORS.md) are just a few examples. The [WebApp Exploit Checklist](./Web-Applications/WebApp-ExploitsChecklist.pdf) is a great visual reference.
+
+## How to Contribute
+This project could be way better than it is, we both know that.
+
+Please consider contributing your own knowledge files, automation scripts, add to the [Useful Repositories README](./Useful-Repositories/README.md), and see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
 
 ## 📜 License
 
