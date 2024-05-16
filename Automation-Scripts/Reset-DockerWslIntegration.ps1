@@ -3,10 +3,10 @@
 This module provides functions to reset Docker WSL integration.
 
 .DESCRIPTION
-The module includes functions to stop Docker Desktop, shut down WSL, and unregister Docker WSL data.
+The module includes functions to stop Docker Desktop, stop WSL, and unregister Docker WSL data.
 
 .NOTES
-Version:        1.0
+Version:        1.1
 Author:         Daethyra
 #>
 
