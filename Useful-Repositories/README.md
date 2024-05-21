@@ -28,9 +28,6 @@
 #### [NBP](https://github.com/NeverWonderLand/NBP)
 - **Description**: The New Blood Project (NBP) is a comprehensive resource for learning about hacktivism. It contains various files and documents that cover a wide range of topics including terminal basics, types of penetration testing, tips for penetration testing, file uploads, and more. Additionally, the repository provides links to other resources and channels where users can learn and contribute to the community.
 
-#### [OWASP Cheat Sheets](https://github.com/OWASP/CheatSheetSeries/tree/master/cheatsheets)
-- **Description**: OWASP Cheat Sheets is a collection of cheat sheets that can be useful for penetration testers and red teamers. According to the repository, "The project focuses on providing good security practices for builders in order to secure their applications." and "The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics."
-
 #### [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg)
 - **Description**: The WSTG is a "comprehensive Open Source guide to testing the security of web applications and web services." It contains documents for testing in various scenarios, and these documents are easily downloaded if one knows the uniform identifiers. It also has a web security testing checklist in both excel and markdown formats.
 
@@ -73,6 +70,9 @@
 
 #### [awesome-malware-analysis](https://github.com/rshipp/awesome-malware-analysis)
 - **Description**: A curated list of awesome malware analysis tools and resources.
+
+#### [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/index.html)
+- **Description**: The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics. These cheat sheets were created by various application security professionals who have expertise in specific topics.
 
 ---
 
