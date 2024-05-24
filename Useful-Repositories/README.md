@@ -51,8 +51,11 @@
 
 ### Offensive Misc
 
-#### [CheatSheet](https://github.com/DennisFeldbusch/CheatSheet)
-- **Description**: CheatSheet is a collection of cheat sheets that can be useful for defenders and security analysts.
+#### [CheatSheet by Dennis Feldbusch](https://github.com/DennisFeldbusch/CheatSheet)
+- **Description**: A cheat sheet of useful tools and commonly used commands during pentesting.
+
+#### [OWASP XSS Filter Evasion Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
+- **Description**: A guide to evading Cross Site Scripting (XSS) filters across multiple contexts. Includes a seemingly exhaustive list of payload examples with various encoding types.
 
 ---
 
