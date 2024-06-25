@@ -91,6 +91,9 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 
 #### [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/index.html)
 - **Description**: The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics. These cheat sheets were created by various application security professionals who have expertise in specific topics.
+  
+#### [Stellastra TLS Cipher Suites](https://stellastra.com/cipher-suite)
+- **Description**: List of TLS Cipher Suites with breakdown by key exchange mechanism, authentication, cipher, and hash alongside deprecation and vulnerability status.
 
 ---
 
