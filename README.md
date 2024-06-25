@@ -6,7 +6,7 @@ Welcome to my personal collection of cybersecurity resources, tools, and referen
 
 ### [Automation](./Automation-Scripts)
 
-Personal automation scripts are kept here.
+<details><summary>Personal automation scripts</summary>
 
 [`firewall_rules.py`](./Automation-Scripts/firewall_rules.py): takes in the URL of a CSV file to block known problematic IP addresses. 
 
@@ -16,36 +16,38 @@ Personal automation scripts are kept here.
 
 [`Reset-DockerWslIntergration.ps1`](./Automation-Scripts/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
-### [Documents](./Documents)
+</details>
+
+### [EduDocuments](./EduDocuments)
 
 This directory contains a collection of documents that can be useful for cybersecurity professionals. It includes a variety of documents that can be useful for different purposes.
-- [Compliance](./Documents/Compliance)
-    - [Security and Privacy Controls for Information Systems and Organizations](./Documents/Compliance//800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf "PDF")
-        - [Spreadsheet](./Documents/Compliance/800-53r5/sp800-53r5-control-catalog.xlsx "XLSX")
-    - [Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule](./Documents/Compliance/800-66r2/NIST.SP.800-66r2.pdf "PDF")
-    - [Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations](./Documents/Compliance/800-171/NIST.SP.800-171r2.pdf "PDF")
-        - [Spreadsheet](./Documents/Compliance/800-171/sp800-171r2-security-reqs.xlsx "XLSX")
-    - [Framework for Improving Critical Infrastructure Cybersecurity](./Documents/Compliance/NIST.CSWP.04162018.pdf "PDF")
-- [Continuous Learning](./Documents/Continuous-Learning/)
-    - [Generative AI](./Documents/Continuous-Learning/Generative-AI/)
-    - [Privacy](./Documents/Continuous-Learning/Privacy/ "Learn about digital privacy.")
-    - [US State Surveillance & Psychological Operations](./Documents/Continuous-Learning/US-State_Surveillance-Psyops/ "Learn about state-sanctioned psyops in the US and abroad.")
-- [Starter Penetration Testing Resources by TCM Security](./Documents/Pentest_Resources-TCM_Security/ "Resources for pentesters in the making.")
-- [Sample Datasets](./Documents/Sample_Datasets/ "A collection of datasets to practice working on.")
+- [RegulatoryCompliance](./EduDocuments/RegulatoryCompliance)
+    - [Security and Privacy Controls for Information Systems and Organizations](./EduDocuments/RegulatoryCompliance//800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf "PDF")
+        - [Spreadsheet](./EduDocuments/RegulatoryCompliance/800-53r5/sp800-53r5-control-catalog.xlsx "XLSX")
+    - [Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule](./EduDocuments/RegulatoryCompliance/800-66r2/NIST.SP.800-66r2.pdf "PDF")
+    - [Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations](./EduDocuments/RegulatoryCompliance/800-171/NIST.SP.800-171r2.pdf "PDF")
+        - [Spreadsheet](./EduDocuments/RegulatoryCompliance/800-171/sp800-171r2-security-reqs.xlsx "XLSX")
+    - [Framework for Improving Critical Infrastructure Cybersecurity](./EduDocuments/RegulatoryCompliance/NIST.CSWP.04162018.pdf "PDF")
+- [Continuous Learning](./EduDocuments/Continuous-Learning/)
+    - [Generative AI](./EduDocuments/Continuous-Learning/Generative-AI/)
+    - [Privacy](./EduDocuments/Continuous-Learning/Privacy/ "Learn about digital privacy.")
+    - [US State Surveillance & Psychological Operations](./EduDocuments/Continuous-Learning/US-State_Surveillance-Psyops/ "Learn about state-sanctioned psyops in the US and abroad.")
+- [Starter Penetration Testing Resources by TCM Security](./EduDocuments/Pentest_Resources-TCM_Security/ "Resources for pentesters in the making.")
+- [Sample Datasets](./EduDocuments/Sample_Datasets/ "A collection of datasets to practice working on.")
 
-### [References](./References)
+### [CheatSheets](./CheatSheets)
 
-This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./References/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./References/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./References/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
+This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./CheatSheets/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./CheatSheets/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./CheatSheets/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
+
+#### [Web-Applications](./Web-Applications)
+
+Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF], and [CORS](./Web-Applications/CORS.md) are just a few examples. The [WebApp Exploit Checklist](./Web-Applications/WebApp-ExploitsChecklist.pdf) is a great visual reference.
 
 ### [UsefulRepositories](./UsefulRepositories)
 
 This is a meta-directory with links to useful cybersecurity-related GitHub repositories. You'll find offensive, defensive, and multi-purpose tools.
 
 Please see the [README](./UsefulRepositories/README.md).
-
-### [Web-Applications](./Web-Applications)
-
-Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF], and [CORS](./Web-Applications/CORS.md) are just a few examples. The [WebApp Exploit Checklist](./Web-Applications/WebApp-ExploitsChecklist.pdf) is a great visual reference.
 
 ## How to Contribute
 This project could be way better than it is, we both know that.
