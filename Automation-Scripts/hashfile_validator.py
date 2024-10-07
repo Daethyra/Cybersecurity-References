@@ -5,7 +5,7 @@
 Filename: hashfile_validator.py
 Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
 Date: 2024-09-29
-Version: v0.1.0
+Version: v0.1.1
 License: GNU Affero General Public License v3.0
 Description: A CLI program that uses Certutil to quickly validate whether a cryptographic hash checksum matches the expected string. The program detects the hash algorithm based on the length of the user-provided provided checksum, and calculates the checksum before finally comparing the two strings.
 """
@@ -29,7 +29,6 @@ HASH_ALGORITHMS = {
     128: ("SHA512", ["SHA512"]),
 }
 
-
 def color_text(text: str, color_code: int) -> str:
     """
     Add color to text if the terminal supports it.
@@ -43,7 +42,6 @@ def color_text(text: str, color_code: int) -> str:
     """
     return f"\033[3{color_code}m{text}\033[0m" if sys.stdout.isatty() else text
 
-
 def validate_hash(hash_value: str) -> Tuple[Optional[str], List[str]]:
     """
     Validate the hash format and suggest possible algorithms.
@@ -55,15 +53,22 @@ def validate_hash(hash_value: str) -> Tuple[Optional[str], List[str]]:
         A tuple of the default algorithm and list of possible algorithms.
 
     Raises:
-        ValueError: If the hash contains non-hexadecimal characters.
+        ValueError: If the hash contains non-hexadecimal characters or has an unsupported length.
     """
     if not set(hash_value).issubset("0123456789abcdefABCDEF"):
         raise ValueError(
             "Invalid hash format. Hash should only contain hexadecimal characters."
         )
 
-    return HASH_ALGORITHMS.get(len(hash_value), (None, []))
-
+    hash_info = HASH_ALGORITHMS.get(len(hash_value))
+    if hash_info is None:
+        valid_lengths = sorted(HASH_ALGORITHMS.keys())
+        raise ValueError(
+            f"Unsupported hash length: {len(hash_value)}. "
+            f"Valid hash lengths are: {', '.join(map(str, valid_lengths))}."
+        )
+    
+    return hash_info
 
 def run_certutil(
     file_path: str, algorithm: str, expected_hash: str, json_output: bool
@@ -78,8 +83,13 @@ def run_certutil(
         json_output: Whether to return results in JSON format.
 
     Returns:
-        Results of the hash check.
+        Results of the hash check as a dictionary.
     """
+    if algorithm is None:
+        error_msg = "Error: Unable to determine hash algorithm"
+        print(color_text(error_msg, RED))
+        return {"error": error_msg}
+
     try:
         result = subprocess.run(
             ["certutil", "-hashfile", file_path, algorithm],
@@ -122,7 +132,6 @@ def run_certutil(
 
     return {"error": error_msg}
 
-
 def get_file_info(file_path: str) -> Dict[str, Any]:
     """
     Get file information.
@@ -131,7 +140,7 @@ def get_file_info(file_path: str) -> Dict[str, Any]:
         file_path: Path to the file.
 
     Returns:
-        File information.
+        File information as a dictionary.
     """
     try:
         file_stats = os.stat(file_path)
@@ -143,7 +152,6 @@ def get_file_info(file_path: str) -> Dict[str, Any]:
     except OSError as e:
         print(color_text(f"Warning: Unable to retrieve file information. {e}", YELLOW))
         return {}
-
 
 def process_files(
     files: List[str],
@@ -168,19 +176,28 @@ def process_files(
     results = []
     for file_path in files:
         if not os.path.exists(file_path):
-            print(color_text(f"Error: The file '{file_path}' does not exist.", RED))
+            error_result = {
+                "file": file_path,
+                "error": f"The file '{file_path}' does not exist."
+            }
+            results.append(error_result)
+            if not json_output:
+                print(color_text(error_result["error"], RED))
             continue
 
         result = run_certutil(file_path, algorithm, expected_hash, json_output)
 
-        if include_info:
+        if include_info and "error" not in result:
             result["file_info"] = get_file_info(file_path)
 
         results.append(result)
     return results
 
-
 def main():
+    """
+    Main function to run the hash validation program.
+    Parses command line arguments and orchestrates the hash checking process.
+    """
     parser = argparse.ArgumentParser(description="Check file hash using certutil.")
     parser.add_argument("file", nargs="+", help="Path to the file(s) to check")
     parser.add_argument("hash", help="Expected hash value")
@@ -197,10 +214,13 @@ def main():
     args = parser.parse_args()
 
     try:
-        # Validate the hash
         default_algorithm, possible_algorithms = validate_hash(args.hash)
-
+        
         algorithm = args.algorithm if args.algorithm else default_algorithm
+        
+        if algorithm is None:
+            raise ValueError("Could not determine hash algorithm and none was specified.")
+        
         if len(possible_algorithms) > 1 and not args.json:
             print(
                 color_text(
@@ -212,24 +232,18 @@ def main():
                 f"To use a different algorithm, specify with -a. Possibilities: {', '.join(possible_algorithms)}"
             )
 
-        if algorithm not in possible_algorithms:
-            print(
-                color_text(
-                    f"Warning: {algorithm} is not a typical algorithm for this hash length.",
-                    YELLOW,
-                )
-            )
-
-        # Process the files
         results = process_files(args.file, algorithm, args.hash, args.info, args.json)
 
         if args.json:
             print(json.dumps(results, indent=2))
 
     except ValueError as e:
-        print(color_text(f"Error: {e}", RED))
+        error_msg = f"Error: {e}"
+        if args.json:
+            print(json.dumps({"error": str(e)}))
+        else:
+            print(color_text(error_msg, RED))
         sys.exit(1)
-
 
 if __name__ == "__main__":
     main()

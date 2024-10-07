@@ -25,11 +25,17 @@
 #### [find-you](https://github.com/positive-security/find-you)
 - **Description**: Find You is a modified version of OpenHaystack that showcases the possibility of building a stealth AirTag clone that bypasses all of Apple's tracking protection features.
 
+#### [HackTricks](https://book.hacktricks.xyz/)
+- **Description**: HackTricks is an extensive resource containing cutting-edge hacking techniques, maintained by security researcher Carlos Polop. It covers a vast array of topics including pentesting methodologies, privilege escalation guides for multiple operating systems, network protocols exploitation, web vulnerabilities, wireless hacking techniques, and more. The repository is regularly updated with new attack vectors and is complemented by an online version (book.hacktricks.xyz) for easier navigation. It's particularly valuable for both beginner and experienced pentesters, offering practical examples, commands, and detailed explanations for various attack scenarios.
+
 #### [NBP](https://github.com/NeverWonderLand/NBP)
 - **Description**: The New Blood Project (NBP) is a comprehensive resource for learning about hacktivism. It contains various files and documents that cover a wide range of topics including terminal basics, types of penetration testing, tips for penetration testing, file uploads, and more. Additionally, the repository provides links to other resources and channels where users can learn and contribute to the community.
 
 #### [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg)
 - **Description**: The WSTG is a "comprehensive Open Source guide to testing the security of web applications and web services." It contains documents for testing in various scenarios, and these documents are easily downloaded if one knows the uniform identifiers. It also has a web security testing checklist in both excel and markdown formats.
+
+#### [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+- **Description**: An extensive and constantly updated repository of payloads, tricks, and techniques useful for exploiting a wide range of vulnerabilities and bypassing security controls. It contains payloads for attacks such as injections (SQL, NoSQL, XPath), XXE, Command Injection, XSS, SSRF, and many others. The repository also offers methods for privilege escalation, post-exploitation, and data exfiltration on various platforms (Windows, Linux, macOS)
 
 #### [ProcessHacker](https://github.com/PKRoma/ProcessHacker)
 - **Description**: Process Hacker is a free and open-source process viewer and memory editor with unique features such as powerful process termination and a Regex memory searcher.
@@ -81,6 +87,9 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 #### [awesome-cybersecurity-blueteam](https://github.com/fabacab/awesome-cybersecurity-blueteam)
 - **Description**: A curated collection of awesome resources, tools, and other shiny things for cybersecurity blue teams.
 
+#### [Pestudio](https://www.winitor.com/)
+- **Description**: A tool designed to detect suspicious artifacts within executable files to identify potentially malicious applications. It's particularly useful for initial assessment of suspicious files and malware analysis.
+
 #### [PersistenceSniper](https://github.com/last-byte/PersistenceSniper)
 - **Description**: PersistenceSniper is a Powershell module that can be used by Blue Teams, Incident Responders and System Administrators to hunt persistences implanted in Windows machines. It is also available on Powershell Gallery and it is digitally signed with a valid code signing certificate.
 
@@ -100,6 +109,9 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 ## Multi-Purpose (Purple Teaming)
 
 ### Multi-Purpose Tools
+
+#### [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns)
+- **Description**: Part of the Sysinternals suite, Autoruns shows what programs are configured to start up automatically when your system boots. It can be used both defensively to identify malicious persistence and offensively to understand potential persistence locations.
 
 #### [The Book of Secret Knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
 - **Description**: This repository is a collection of various materials and tools that I use every day in my work. It contains a lot of useful information gathered in one piece. It is an invaluable source of knowledge for me that I often look back on. For everyone, really. Here everyone can find their favourite tastes. But to be perfectly honest, it is aimed towards System and Network administrators, DevOps, Pentesters, and Security Researchers.
