@@ -34,6 +34,9 @@
 #### [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg)
 - **Description**: The WSTG is a "comprehensive Open Source guide to testing the security of web applications and web services." It contains documents for testing in various scenarios, and these documents are easily downloaded if one knows the uniform identifiers. It also has a web security testing checklist in both excel and markdown formats.
 
+#### [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+- **Description**: An extensive and constantly updated repository of payloads, tricks, and techniques useful for exploiting a wide range of vulnerabilities and bypassing security controls. It contains payloads for attacks such as injections (SQL, NoSQL, XPath), XXE, Command Injection, XSS, SSRF, and many others. The repository also offers methods for privilege escalation, post-exploitation, and data exfiltration on various platforms (Windows, Linux, macOS)
+
 #### [ProcessHacker](https://github.com/PKRoma/ProcessHacker)
 - **Description**: Process Hacker is a free and open-source process viewer and memory editor with unique features such as powerful process termination and a Regex memory searcher.
 
