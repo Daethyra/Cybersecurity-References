@@ -12,10 +12,11 @@ import logging
 import os
 import platform
 import re
-import requests
 import subprocess
 import time
-from typing import Set, Optional
+from typing import Optional, Set
+
+import requests
 
 # Constants and Configurations
 URL = "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"

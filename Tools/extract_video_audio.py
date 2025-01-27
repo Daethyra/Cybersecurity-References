@@ -1,6 +1,8 @@
 import argparse
 import os
+
 from moviepy.editor import VideoFileClip
+
 
 def extract_audio_from_mp4(mp4_file: str):
     """

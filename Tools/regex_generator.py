@@ -25,12 +25,13 @@ Example config file:
 
 """
 
-import json
-import re
 import argparse
 import datetime
+import json
+import re
 import unicodedata
-from typing import List, Dict, Set
+from typing import Dict, List, Set
+
 
 class RegexGenerator:
     DEFAULT_SUBSTITUTIONS = {

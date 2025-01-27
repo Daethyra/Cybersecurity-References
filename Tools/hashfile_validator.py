@@ -11,11 +11,11 @@ Description: A CLI program that uses Certutil to quickly validate whether a cryp
 """
 
 import argparse
+import json
+import os
 import subprocess
 import sys
-import os
-import json
-from typing import Tuple, List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional, Tuple
 
 # Constants
 RED, GREEN, YELLOW = 1, 2, 3
