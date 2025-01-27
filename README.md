@@ -49,7 +49,7 @@ Here you'll find documents for common web application vulnerabilities, like thos
 
 </details>
 
-### [UsefulRepositories](./UsefulRepositories)
+### [Useful-Repositories](./Useful-Repositories)
 
 This is a meta-directory with links to useful cybersecurity-related GitHub repositories. You'll find offensive, defensive, and multi-purpose tools.
 
