@@ -47,13 +47,9 @@ Here you'll find documents for common web application vulnerabilities, like thos
 
 [`Reset-DockerWslIntergration.ps1`](./Tools/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
+[`Useful-Repositories/README.md`](./Useful-Repositories/README.md): A document with links to useful cybersecurity-related GitHub repositories.
+
 </details>
-
-### [Useful-Repositories](./Useful-Repositories)
-
-This is a meta-directory with links to useful cybersecurity-related GitHub repositories. You'll find offensive, defensive, and multi-purpose tools.
-
-Please see the [README](./UsefulRepositories/README.md).
 
 ## How to Contribute
 This project could be way better than it is, we both know that.
