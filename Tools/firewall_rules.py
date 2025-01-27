@@ -1,17 +1,19 @@
 import csv
 import logging
 import os
+import platform
+import re
 import requests
 import subprocess
 import time
-from typing import List, Optional
+from typing import Set, Optional
 
 # Constants and Configurations
 URL = "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"
-DELETE_RULE_TEMPLATE = "netsh advfirewall firewall delete rule name='BadIP_{direction}_{ip}'"
-BLOCK_RULE_TEMPLATE = "netsh advfirewall firewall add rule name='BadIP_{direction}_{ip}' dir={direction} action=block remoteip={ip}"
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", 3))
 RETRY_DELAY = int(os.getenv("RETRY_DELAY", 2))
+RULE_NAME = "FeodoBadIP"
+COMMENT = "FeodoTrackerBlocklist"
 
 # Logging Setup
 logger = logging.getLogger(__name__)
@@ -19,101 +21,134 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-def execute_command(command: str) -> None:
-    """
-    Executes a system command using PowerShell.
+class FirewallCommandGenerator:
+    """Base class for firewall command generators with bulk IP support"""
+    def get_current_ips(self, direction: str) -> Set[str]:
+        raise NotImplementedError()
+    
+    def update_rule(self, ips: Set[str], direction: str) -> None:
+        raise NotImplementedError()
 
-    Parameters:
-    command (str): The command to execute.
+class WindowsFirewallCommandGenerator(FirewallCommandGenerator):
+    """Manages Windows firewall rules using netsh with bulk IP support"""
+    def get_current_ips(self, direction: str) -> Set[str]:
+        try:
+            output = subprocess.check_output(
+                ["netsh", "advfirewall", "firewall", "show", "rule", 
+                 f"name={RULE_NAME}_{direction}"], 
+                text=True
+            )
+            match = re.search(r'RemoteIP:\s*(.+?)\s*LocalIP:', output, re.DOTALL)
+            return set(match.group(1).split(',')) if match else set()
+        except subprocess.CalledProcessError:
+            return set()
 
-    Raises:
-    subprocess.CalledProcessError: If the command execution fails.
-    """
-    try:
-        subprocess.run(["Powershell", "-Command", command], check=True)
-    except subprocess.CalledProcessError as e:
-        logger.error(f"Command failed: {e}")
-        raise
+    def update_rule(self, ips: Set[str], direction: str) -> None:
+        if not ips:
+            return
 
-def fetch_blocklist(url: str) -> Optional[str]:
-    """
-    Fetches a blocklist CSV from the specified URL with retries.
+        # Delete existing rule if it exists
+        subprocess.run(
+            ["netsh", "advfirewall", "firewall", "delete", "rule",
+             f"name={RULE_NAME}_{direction}"],
+            stderr=subprocess.DEVNULL
+        )
 
-    Parameters:
-    url (str): The URL of the blocklist CSV.
+        # Create new rule with all IPs
+        ip_list = ','.join(ips)
+        subprocess.run([
+            "netsh", "advfirewall", "firewall", "add", "rule",
+            f"name={RULE_NAME}_{direction}",
+            "dir=in" if direction == "In" else "dir=out",
+            "action=block",
+            f"remoteip={ip_list}"
+        ], check=True)
 
-    Returns:
-    Optional[str]: The CSV data as a string, or None if fetching fails after retries.
-    """
+class LinuxFirewallCommandGenerator(FirewallCommandGenerator):
+    """Manages Linux iptables rules with bulk IP support"""
+    def get_current_ips(self, direction: str) -> Set[str]:
+        chain = "INPUT" if direction == "In" else "OUTPUT"
+        try:
+            output = subprocess.check_output(
+                ["iptables-save"], 
+                text=True
+            )
+            pattern = re.compile(
+                fr"-A {chain} -s (\d+\.\d+\.\d+\.\d+) -m comment --comment {COMMENT} -j DROP"
+            )
+            return set(pattern.findall(output))
+        except subprocess.CalledProcessError:
+            return set()
+
+    def update_rule(self, ips: Set[str], direction: str) -> None:
+        chain = "INPUT" if direction == "In" else "OUTPUT"
+        
+        # Remove existing rules
+        subprocess.run([
+            "sh", "-c",
+            f"iptables-save | grep -v '{COMMENT}' | iptables-restore"
+        ], stderr=subprocess.DEVNULL)
+
+        # Add new rules
+        for ip in ips:
+            subprocess.run([
+                "iptables", "-A", chain,
+                "-s", ip,
+                "-m", "comment", "--comment", COMMENT,
+                "-j", "DROP"
+            ], check=True)
+
+def get_command_generator() -> FirewallCommandGenerator:
+    """Returns the appropriate command generator based on the OS"""
+    os_type = platform.system().lower()
+    if os_type == 'windows':
+        return WindowsFirewallCommandGenerator()
+    elif os_type == 'linux':
+        return LinuxFirewallCommandGenerator()
+    raise NotImplementedError(f"OS {os_type} is not supported")
+
+def fetch_blocklist(url: str) -> Optional[Set[str]]:
+    """Fetches and parses blocklist returning a set of IPs"""
     for _ in range(MAX_RETRIES):
         try:
-            return requests.get(url).text
+            response = requests.get(url)
+            response.raise_for_status()
+            reader = csv.reader(response.text.splitlines())
+            return {row[1] for row in reader if row and not row[0].startswith('#') and row[1] != 'dst_ip'}
         except Exception as e:
             logger.error(f"Error fetching: {e}")
             time.sleep(RETRY_DELAY)
     return None
 
-def parse_csv(data: str) -> List[List[str]]:
-    """
-    Parses CSV data, filtering out comments and headers.
-
-    Parameters:
-    data (str): The CSV data as a string.
-
-    Returns:
-    List[List[str]]: A list of rows from the CSV data, excluding comments and headers.
-    """
-    return [row for row in csv.reader(data.splitlines()) if row]
-
-def update_firewall_rule(ip: str, direction: str) -> None:
-    """
-    Updates a single firewall rule for the specified IP and direction.
-
-    Parameters:
-    ip (str): The IP address to update the rule for.
-    direction (str): The direction of the rule ('In' or 'Out').
-
-    Raises:
-    Exception: If there's an error updating the rule.
-    """
-    delete_cmd = DELETE_RULE_TEMPLATE.format(direction=direction, ip=ip)
-    add_cmd = BLOCK_RULE_TEMPLATE.format(direction=direction, ip=ip)
-
-    try:
-        execute_command(delete_cmd)
-        execute_command(add_cmd)
-        logger.info(f"Updated {direction} rule for IP: {ip}")
-    except Exception as e:
-        logger.error(f"Update failed for {ip}: {e}")
-        raise
+def update_firewall_rules(ips: Set[str]) -> None:
+    """Updates firewall rules for both directions with the given IP set"""
+    cmd_generator = get_command_generator()
+    
+    for direction in ["In", "Out"]:
+        try:
+            current_ips = cmd_generator.get_current_ips(direction)
+            if current_ips != ips:
+                logger.info(f"Updating {direction} rules with {len(ips)} IPs")
+                cmd_generator.update_rule(ips, direction)
+                logger.info(f"Updated {direction} rules successfully")
+            else:
+                logger.info(f"{direction} rules already up-to-date")
+        except Exception as e:
+            logger.error(f"Failed updating {direction} rules: {e}")
+            raise
 
 def rule_updater():
-    """
-    Orchestrates the process of updating firewall rules based on a blocklist.
-
-    This function fetches a blocklist, parses it, and updates firewall rules for each IP.
-    """
-    data = fetch_blocklist(URL)
-    if not data:
+    """Main rule update workflow"""
+    ips = fetch_blocklist(URL)
+    if not ips:
         logger.error("Failed to download blocklist")
         return
-
-    rules = parse_csv(data)
-    for rule in rules:
-        ip = rule[1]
-        if ip == "dst_ip":
-            continue
-
-        try:
-            update_firewall_rule(ip, "In")
-            update_firewall_rule(ip, "Out")
-        except Exception as e:
-            logger.error(f"Error updating rule for IP {ip}: {e}")
+    
+    logger.info(f"Processing {len(ips)} IP addresses")
+    update_firewall_rules(ips)
 
 def main():
-    """
-    Entry point for the module execution. Orchestrates the rule updating process.
-    """
+    """Entry point for script execution"""
     try:
         rule_updater()
     except Exception as e:
