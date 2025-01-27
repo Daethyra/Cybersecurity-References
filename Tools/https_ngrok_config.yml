@@ -1,0 +1,29 @@
+version: 3
+# Starts an Ngrok HTTPS endpoint w/ OAuth support
+
+agent:
+  authtoken: 
+  api_key: 
+  connect_timeout: 30s
+  console_ui: iftty
+  console_ui_color: black
+  heartbeat_interval: 1m
+  heartbeat_tolerance: 90s
+  log_format: term
+
+endpoints:
+  - name: testcloud
+    url: https://ligma-chugma.ngrok-free.app
+    metadata: "edge=ligma_chugma"  # Labels converted to metadata
+    upstream:
+      url: http://host.docker.internal:80
+    traffic_policy:
+      on_http_request:
+        - actions:
+            - type: oauth
+              config:
+                provider: google
+            - type: rewrite
+              config:
+                headers:
+                  Host: "ligma-chugma.ngrok-free.app"
