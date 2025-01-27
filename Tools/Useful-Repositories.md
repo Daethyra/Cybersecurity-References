@@ -87,6 +87,17 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 #### [awesome-cybersecurity-blueteam](https://github.com/fabacab/awesome-cybersecurity-blueteam)
 - **Description**: A curated collection of awesome resources, tools, and other shiny things for cybersecurity blue teams.
 
+#### [freq](https://github.com/MarkBaggett/freq)
+- **Description**: A Python toolkit for detecting anomalous text patterns using statistical analysis of character pairs (bigrams). It helps identify obfuscated commands, suspicious inputs, and rare log entries by comparing text against customizable frequency tables.
+
+<details>
+
+**Key Features**: CLI tools (freq.py, freq_sort.py) to score text "normality," build custom baselines, and prioritize log analysis. Optional REST API (freq_server.py) for integration into SIEMs or web apps.
+
+**Use Cases**: Flagging encoded PowerShell commands in logs, detecting rare symbols in SQL queries, validating user input patterns, and identifying low-entropy passwords.
+
+</details>
+
 #### [Pestudio](https://www.winitor.com/)
 - **Description**: A tool designed to detect suspicious artifacts within executable files to identify potentially malicious applications. It's particularly useful for initial assessment of suspicious files and malware analysis.
 
@@ -114,7 +125,7 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 - **Description**: Part of the Sysinternals suite, Autoruns shows what programs are configured to start up automatically when your system boots. It can be used both defensively to identify malicious persistence and offensively to understand potential persistence locations.
 
 #### [The Book of Secret Knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
-- **Description**: This repository is a collection of various materials and tools that I use every day in my work. It contains a lot of useful information gathered in one piece. It is an invaluable source of knowledge for me that I often look back on. For everyone, really. Here everyone can find their favourite tastes. But to be perfectly honest, it is aimed towards System and Network administrators, DevOps, Pentesters, and Security Researchers.
+- **Description**: "This repository is a collection of various materials and tools that I use every day in my work. It contains a lot of useful information gathered in one piece. It is an invaluable source of knowledge for me that I often look back on. For everyone, really. Here everyone can find their favourite tastes. But to be perfectly honest, it is aimed towards System and Network administrators, DevOps, Pentesters, and Security Researchers."
 
 #### [PEASS-ng](https://github.com/carlospolop/PEASS-ng)
 - **Description**: PEASS-ng (Privilege Escalation Awesome ScriptsSuite) is aimed at detection of security vulnerabilities in local Windows/Linux/OSX environments.

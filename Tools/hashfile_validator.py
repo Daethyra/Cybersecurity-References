@@ -6,7 +6,7 @@ Filename: hashfile_validator.py
 Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
 Date: 2024-09-29
 Version: v0.1.1
-License: GNU Affero General Public License v3.0
+License: MIT (c) 2024 Daethyra Carino
 Description: A CLI program that uses Certutil to quickly validate whether a cryptographic hash checksum matches the expected string. The program detects the hash algorithm based on the length of the user-provided provided checksum, and calculates the checksum before finally comparing the two strings.
 """
 
