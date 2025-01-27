@@ -58,4 +58,4 @@ Please consider contributing your own knowledge files, automation scripts, add t
 
 ## 📜 License
 
-Distributed under the GNU AGPL-3.0 License. See [LICENSE](./LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
