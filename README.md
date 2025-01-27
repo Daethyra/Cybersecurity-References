@@ -45,6 +45,8 @@ Here you'll find documents for common web application vulnerabilities, like thos
 
 [`regex_generator.py`](./Tools/RegexGenerator.py): Generates regex patterns to detect keyword variations, including obfuscated and evasive text, for precise matching.
 
+[`repo_structure_visualizer.py`](./Tools/repo_structure_visualizer.py): A Python script that automatically generates an interactive HTML navigation interface for a GitHub repository's directory structure. Adaptable for any repository.
+
 [`Reset-DockerWslIntergration.ps1`](./Tools/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
 [`Useful-Repositories/README.md`](./Useful-Repositories/README.md): A document with links to useful cybersecurity-related GitHub repositories.
