@@ -1,172 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directory Listing</title>
+    <title>Matrix Rain</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            margin: 0;
+            overflow: hidden;
+            background: black;
         }
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
-        li {
-            margin: 0.5em 0;
-        }
-        .directory {
-            font-weight: bold;
-            margin-top: 1em;
-        }
-        a {
-            text-decoration: none;
-            color: #0366d6;
-        }
-        a:hover {
-            text-decoration: underline;
+        canvas {
+            display: block;
+            image-rendering: crisp-edges;
+            text-rendering: geometricPrecision;
         }
     </style>
 </head>
 <body>
-    <h1>Directory Listing</h1>
-    <ul>
-        <li class="directory">Tools/
-            <ul>
-                <li><a href="Tools/extract_video_audio.py">extract_video_audio.py</a></li>
-                <li><a href="Tools/firewall_rules.py">firewall_rules.py</a></li>
-                <li><a href="Tools/fuzzing_data_factory.py">fuzzing_data_factory.py</a></li>
-                <li><a href="Tools/hashfile_validator.py">hashfile_validator.py</a></li>
-                <li><a href="Tools/https_ngrok_config.yml">https_ngrok_config.yml</a></li>
-                <li><a href="Tools/regex_generator.py">regex_generator.py</a></li>
-                <li><a href="Tools/Reset-DockerWslIntegration.ps1">Reset-DockerWslIntegration.ps1</a></li>
-                <li><a href="Tools/Useful-Repositories.md">Useful-Repositories.md</a></li>
-            </ul>
-        </li>
-        <li class="directory">EduDocuments/
-            <ul>
-                <li class="directory">RegulatoryCompliance/
-                    <ul>
-                        <li class="directory">800-53r5/
-                            <ul>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf">SP_800-53_v5_1_derived-OSCAL.pdf</a></li>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-53r5/sp800-53r5-control-catalog.xlsx">sp800-53r5_control-catalog.xlsx</a></li>
-                            </ul>
-                        </li>
-                        <li class="directory">800-63/
-                            <ul>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-63/NIST.SP.800-63-3.pdf">NIST.SP.800-63-3.pdf</a></li>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-63/nist.sp.800-63a.pdf">nist.sp.800-63a.pdf</a></li>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-63/nist.sp.800-63b.pdf">nist.sp.800-63b.pdf</a></li>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-63/nist.sp.800-63c.pdf">nist.sp.800-63c.pdf</a></li>
-                            </ul>
-                        </li>
-                        <li class="directory">800-66r2/
-                            <ul>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-66r2/NIST.SP.800-66r2.pdf">NIST.SP.800-66r2.pdf</a></li>
-                            </ul>
-                        </li>
-                        <li class="directory">800-171/
-                            <ul>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-171/NIST.SP.800-171r2.pdf">NIST.SP.800-171r2.pdf</a></li>
-                                <li><a href="EduDocuments/RegulatoryCompliance/800-171/sp800-171r2-security-reqs.xlsx">sp800-171r2-security-reqs.xlsx</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="EduDocuments/RegulatoryCompliance/NIST.CSWP.04162018.pdf">NIST.CSWP.04162018.pdf</a></li>
-                        <li><a href="EduDocuments/RegulatoryCompliance/visa-cisp-what-to-do-if-compromised.pdf">visa-cisp-what-to-do-if-compromised.pdf</a></li>
-                    </ul>
-                </li>
-                <li class="directory">Continuous-Learning/
-                    <ul>
-                        <li class="directory">Generative-AI/
-                            <ul>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/A Rubric for ML Production Readiness and Technical Debt Reduction.pdf">A Rubric for ML Production Readiness and Technical Debt Reduction.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/AI_systems_as_state_actors-Crawford-Schultz.pdf">AI_systems_as_state_actors-Crawford-Schultz.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/ai-anatomy-map.pdf">ai-anatomy-map.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/ai-anatomy-publication-Crawford.pdf">ai-anatomy-publication-Crawford.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/Better and Faster Large Language Models via Multi-token Prediction 2404.19737v1.pdf">Better and Faster Large Language Models via Multi-token Prediction.2404.17971.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/Code Generation with AlphaCodium From Prompt Engineering to Flow-2401.08500.pdf">Code Generation with AlphaCodeium from Prompt Injection to Flow-2401.08500.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/corrective-retrieval-augmented-generation-2401.15884.pdf">corrective-retrieval-augmented-generation-2401.15884.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/HistoryOfSecretary_GenderRoles_&AISecretaries-Crwaford.pdf">HistoryOfSecretary_GenderRoles_&AISecretaries-Crwaford.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/Least-to-Most Prompting Enables Complex Reasoning in Large Language Models-2205.10625.pdf">Least-to-Most Prompting Enables Complex Reasoning in Large Language Models-2205.10625.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/Mamba Linear-Time Sequence Modeling with Selective State Spaces 2312.00752.pdf">Mamba Linear-Time Sequence Modeling with Selective State Spaces 2312.00752.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/mckinsey_and_company_whats-the-future-of-generative-ai-an-early-view-in-15-charts.pdf">mckinsey_and_company_whats-the-future-of-generative-ai-an-early-view-in-15-charts.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/PowerWithoutResponsibilityInAI-Crawford.pdf">PowerWithoutResponsibilityInAI-Crawford.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/practitioners_guide_to_mlops_whitepaper.pdf">practitioners_guide_to_mlops_whitepaper.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/RAPTOR RECURSIVE ABSTRACTIVE PROCESSING - 2401.18059.pdf">RAPTOR RECURSIVE ABSTRACTIVE PROCESSING - 2401.18059.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/ReAct-SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS-2210.03629.pdf">ReAct-SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS-2210.03629.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/self-reflective-retrieval-augmented-generation-2310.11511.pdf">self-reflective-retrieval-augmented-generation-2310.11511.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/SustAIn_Magazine_2022_EN.pdf">SustAIn_Magazine_2022_EN.pdf</a></li>
-                                <li><a href="EduDocuments/Continuous-Learning/Generative-AI/Tree of Thoughts - Deliberate Problem Solving with LLMs - Machine Learning - AI.pdf">Tree of Thoughts - Deliberate Problem Solving with LLMs - Machine Learning - AI.pdf</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="directory">Pentest_Resources-TCM_Security/
-                    <ul>
-                        <li><a href="EduDocuments/Pentest_Resources-TCM_Security/Subnetting - Cheat Sheet.pdf">Subnetting - Cheat Sheet.pdf</a></li>
-                        <li><a href="EduDocuments/Pentest_Resources-TCM_Security/TCMS - External Pentest Checklist.xlsx">TCMS - External Pentest Checklist.xlsx</a></li>
-                    </ul>
-                </li>
-                <li class="directory">Sample_Datasets/
-                    <ul>
-                        <li class="directory">Gun Violence Archive - Incidents/
-                            <ul>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-1cce6b6e-6c6b-4ff2-8a76-174e0ac22f7e.csv">export-1cce6b6e-6c6b-4ff2-8a76-174e0ac22f7e.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-8d88e7cd-4fe6-4667-9a0b-7fe114ab19de.csv">export-8d88e7cd-4fe6-4667-9a0b-7fe114ab19de.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-8f02fa05-e1d5-4eb2-8656-b13671c34047.csv">export-8f02fa05-e1d5-4eb2-8656-b13671c34047.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-82dc1cbe-49a7-4a2c-a57e-4f53db8a9b3c.csv">export-82dc1cbe-49a7-4a2c-a57e-4f53db8a9b3c.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-626c6836-95f2-4f8f-9b7a-d7fb46844e98.csv">export-626c6836-95f2-4f8f-9b7a-d7fb46844e98.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/export-b27072c5-0faa-43cc-8fbb-71af94f24b0d.csv">export-b27072c5-0faa-43cc-8fbb-71af94f24b0d.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/massshootings20-20-2023.csv">massshootings20-20-2023.csv</a></li>
-                                <li><a href="EduDocuments/Sample_Datasets/Gun Violence Archive - Incidents/officer involved.csv">other involved.csv</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="EduDocuments/Sample_Datasets/BigML_Dataset_5f50a62795a9306aa200003e.csv">BigML_Dataset_5f50a62795a9306aa200003e.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/conservative_news_domains.txt">conservative_news_domains.txt</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/forbes_richman_Annual_03-30-23.csv">forbes_richman_Annual_03-30-23.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/Global poverty and inequality dataset_pip_codebook.csv">Global poverty and inequality dataset_pip_codebook.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/Global poverty and inequality dataset_pip_dataset.csv">Global poverty and inequality dataset_pip_dataset.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/Global YouTube Statistics.csv">Global YouTube Statistics.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/global-data-on-sustainable-energy (1).csv">global-data-on-sustainable-energy (1).csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/preprocessed_world_data_2023.csv">preprocessed_world_data_2023.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/Screen Time Data.csv">Screen Time Data.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/Wellbeing_and_lifestyle_data_Kaggle.csv">Wellbeing_and_lifestyle_data_Kaggle.csv</a></li>
-                        <li><a href="EduDocuments/Sample_Datasets/world-data-2023.csv">world-data-2023.csv</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li class="directory">CheatSheets/
-            <ul>
-                <li class="directory">text-processing/
-                    <ul>
-                        <li><a href="CheatSheets/text-processing/Parsing for Pentesters - F’Awk Yeah! Advanced sed and awk Usage (Parsing for Pentesters 3) _ by Jeff Dimmock _ Posts By SpecterOps Team Members.pdf">Parsing for Pentesters - FAWk Yeah! Advanced sed and awk Usage (Parsing for Pentesters 3)_by Jeff Dimmock.pdf</a></li>
-                        <li><a href="CheatSheets/text-processing/Text_Processing_and_Shell_Operations.md">Text_Processing_and_Shell_Operations.md</a></li>
-                        <li><a href="CheatSheets/text-processing/Get_Started-MaderasSecurityArsenal.md">Get_Started-MaderasSecurityArsenal.md</a></li>
-                        <li><a href="CheatSheets/text-processing/Search_Engines_for_Pentesters.jpg">Search_Engines_for_Pentesters.jpg</a></li>
-                        <li><a href="CheatSheets/text-processing/Using Cloudflare to bypass Cloudflare - Certitude Blog.pdf">Using Cloudflare to bypass Cloudflare - Certitude Blog.pdf</a></li>
-                        <li><a href="CheatSheets/text-processing/linux_performance_tuning.jpg">Linux Performance Tuning Diagram</a></li>
-                    </ul>
-                </li>
-                <li class="directory">Web-Applications/
-                    <ul>
-                        <li><a href="CheatSheets/Web-Applications/CORS.md">CORS.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/CSRF.md">CSRF.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/HTML.md">HTML.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/injection_fundamentals.md">injection_fundamentals.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/PathTraversal.md">PathTraversal.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/README.md">README.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/SQL_injection_payloads.md">SQL_injection_payloads.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/SSRF_bypassFilters.md">SSRF_bypassFilters.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/web_hacking_example_workflow.md">web_hacking_example_workflow.md</a></li>
-                        <li><a href="CheatSheets/Web-Applications/WebApp-ExploitsChecklist.pdf">WebApp-ExploitsChecklist.pdf</a></li>
-                        <li><a href="CheatSheets/Web-Applications/XSS_contexts.md">XSS_contexts.md</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <!-- 
+        Filename: matrix-rain.html
+        Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
+        Date: 2025-01-26
+        Version: v0.1.0
+        License: MIT (c) 2025 Daethyra Carino
+        Description: A responsive, multilingual Matrix-style code rain animation featuring glowing green characters (Katakana, Latin, Hanzi, Hangul) with dynamic trails, variable fall speeds, and random resets. Built with HTML5 Canvas.
+    -->
+    <canvas id="matrix"></canvas>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        // Character sets
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const roman = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@*#-%$';
+        const hanzi = Array.from({length: 200}, (_, i) => String.fromCharCode(0x4E00 + i));
+        const hangul = Array.from({length: 200}, (_, i) => String.fromCharCode(0xAC00 + i));
+        
+        const chars = [
+            katakana,
+            roman,
+            hanzi.join(''),
+            hangul.join('')
+        ].join('');
+
+        let charsArray = chars.split('').filter(c => c.trim() !== '');
+        if (charsArray.length === 0) charsArray = ['A'];
+
+        let fontSize = 16;
+        let columns = [];
+        let drops = [];
+        const trailLength = 4;
+
+        function initialize() {
+            fontSize = Math.floor(window.innerWidth / 90);
+            fontSize = Math.min(Math.max(fontSize, 14), 24);
+            ctx.font = `${fontSize}px "MS Gothic", "AppleGothic", "Monaco", "Consolas", monospace`;
+
+            columns = [];
+            drops = [];
+            let x = 0;
+            
+            while (x < canvas.width) {
+                const randomChar = charsArray[Math.floor(Math.random() * charsArray.length)];
+                const charWidth = ctx.measureText(randomChar).width;
+                const columnWidth = charWidth * 1.25;
+                
+                if (x + columnWidth > canvas.width) break;
+                
+                columns.push({
+                    width: columnWidth,
+                    x: x
+                });
+                
+                drops.push({
+                    y: -Math.random() * canvas.height/2,
+                    speed: Math.random() * 0.5 + 0.5 // Variable fall speed
+                });
+                
+                x += columnWidth;
+            }
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initialize();
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let lastFrame = performance.now();
+        const fpsInterval = 1000/60;
+
+        function draw() {
+            const now = performance.now();
+            const elapsed = now - lastFrame;
+
+            if (elapsed > fpsInterval) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = 0; i < columns.length; i++) {
+                    const column = columns[i];
+                    const drop = drops[i];
+
+                    // Random chance to reset column
+                    if (Math.random() < 0.005) { // 0.5% chance per frame to reset
+                        drop.y = -trailLength;
+                        drop.speed = Math.random() * 0.5 + 0.5; // New random speed
+                    }
+
+                    // Draw characters with fading trail
+                    for (let j = trailLength - 1; j >= 0; j--) {
+                        const pos = drop.y - j;
+                        if (pos < 0) continue;
+
+                        const char = charsArray[Math.floor(Math.random() * charsArray.length)];
+                        const fade = Math.floor(255 * (1 - j/trailLength));
+                        
+                        const charWidth = ctx.measureText(char).width;
+                        const xPos = column.x + (column.width - charWidth)/2;
+
+                        if (j === 0) {
+                            ctx.save();
+                            ctx.shadowColor = `rgba(255, 255, 255, ${0.3 + (1 - j/trailLength)*0.5})`;
+                            ctx.shadowBlur = 15;
+                            ctx.fillStyle = `rgb(${fade}, 255, ${fade})`;
+                            ctx.fillText(char, xPos, pos * fontSize);
+                            ctx.restore();
+                        } else {
+                            ctx.fillStyle = `rgb(${fade}, 255, ${fade})`;
+                            ctx.fillText(char, xPos, pos * fontSize);
+                        }
+                    }
+
+                    // Update position
+                    drop.y += drop.speed;
+                    if (drop.y * fontSize > canvas.height + trailLength) {
+                        drop.y = -trailLength;
+                    }
+                }
+
+                lastFrame = now - (elapsed % fpsInterval);
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
 </body>
 </html>
