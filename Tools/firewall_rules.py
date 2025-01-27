@@ -1,3 +1,12 @@
+"""
+Filename: firewall_rules.py
+Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
+Date: 2025-01-26
+Version: v1.0.0
+License: MIT (c) 2025 Daethyra Carino
+Short Description: Cross-platform firewall rule manager that automatically blocks malicious IPs from FeodoTracker's blocklist, supporting bulk updates for Windows (netsh) and Linux (iptables) with retry logic and rule synchronization.
+"""
+
 import csv
 import logging
 import os
