@@ -11,7 +11,6 @@
         canvas {
             display: block;
             image-rendering: crisp-edges;
-            text-rendering: geometricPrecision;
         }
     </style>
 </head>
@@ -49,7 +48,8 @@
         let fontSize = 16;
         let columns = [];
         let drops = [];
-        const trailLength = 4;
+        const trailLength = 5;
+        const lineHeightMultiplier = 1.25;
 
         function initialize() {
             fontSize = Math.floor(window.innerWidth / 90);
@@ -63,7 +63,7 @@
             while (x < canvas.width) {
                 const randomChar = charsArray[Math.floor(Math.random() * charsArray.length)];
                 const charWidth = ctx.measureText(randomChar).width;
-                const columnWidth = charWidth * 1.25;
+                const columnWidth = charWidth * 1.2;
                 
                 if (x + columnWidth > canvas.width) break;
                 
@@ -74,7 +74,9 @@
                 
                 drops.push({
                     y: -Math.random() * canvas.height/2,
-                    speed: Math.random() * 0.5 + 0.5 // Variable fall speed
+                    speed: Math.random() * 0.5 + 0.5,
+                    lastChar: '',
+                    trail: []
                 });
                 
                 x += columnWidth;
@@ -98,48 +100,49 @@
             const elapsed = now - lastFrame;
 
             if (elapsed > fpsInterval) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.09)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 for (let i = 0; i < columns.length; i++) {
                     const column = columns[i];
                     const drop = drops[i];
 
-                    // Random chance to reset column
-                    if (Math.random() < 0.005) { // 0.5% chance per frame to reset
-                        drop.y = -trailLength;
-                        drop.speed = Math.random() * 0.5 + 0.5; // New random speed
+                    // Update trail
+                    drop.trail.unshift(charsArray[Math.floor(Math.random() * charsArray.length)]);
+                    if (drop.trail.length > trailLength) {
+                        drop.trail.pop();
                     }
 
-                    // Draw characters with fading trail
-                    for (let j = trailLength - 1; j >= 0; j--) {
+                    // Column reset logic
+                    if (Math.random() < 0.004 || drop.y * fontSize > canvas.height * 1.2) {
+                        drop.y = -trailLength;
+                        drop.speed = Math.random() * 0.5 + 0.5;
+                        drop.trail = [];
+                    }
+
+                    // Draw characters
+                    for (let j = 0; j < drop.trail.length; j++) {
                         const pos = drop.y - j;
                         if (pos < 0) continue;
 
-                        const char = charsArray[Math.floor(Math.random() * charsArray.length)];
-                        const fade = Math.floor(255 * (1 - j/trailLength));
-                        
+                        const char = drop.trail[j];
                         const charWidth = ctx.measureText(char).width;
                         const xPos = column.x + (column.width - charWidth)/2;
-
+                        const yPos = pos * fontSize * lineHeightMultiplier;
+                        
+                        // Direct rendering without shadow effects
                         if (j === 0) {
-                            ctx.save();
-                            ctx.shadowColor = `rgba(255, 255, 255, ${0.3 + (1 - j/trailLength)*0.5})`;
-                            ctx.shadowBlur = 15;
-                            ctx.fillStyle = `rgb(${fade}, 255, ${fade})`;
-                            ctx.fillText(char, xPos, pos * fontSize);
-                            ctx.restore();
+                            ctx.fillStyle = `rgb(180, 255, 180)`; // Bright leading character
                         } else {
-                            ctx.fillStyle = `rgb(${fade}, 255, ${fade})`;
-                            ctx.fillText(char, xPos, pos * fontSize);
+                            const fade = 180 - (j * 30);
+                            ctx.fillStyle = `rgba(0, ${fade}, 0, ${1 - (j/trailLength)})`;
                         }
+                        
+                        ctx.fillText(char, xPos, yPos);
                     }
 
                     // Update position
                     drop.y += drop.speed;
-                    if (drop.y * fontSize > canvas.height + trailLength) {
-                        drop.y = -trailLength;
-                    }
                 }
 
                 lastFrame = now - (elapsed % fpsInterval);
