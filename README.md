@@ -1,35 +1,66 @@
 # Cybersecurity References 🛡️🔒
 
-Welcome to my personal collection of cybersecurity resources, tools, and references.
+![HACKERMANS by numrii](https://cdn.betterttv.net/emote/5b490e73cf46791f8491f6f4/3x.webp)
 
-## 📁 Directory Structure
+Welcome to my personal cybersecurity toolkit.
 
-### [EduDocuments](./EduDocuments)
+## [CheatSheets](./CheatSheets)
 
-This directory contains a collection of documents that can be useful for cybersecurity professionals. It includes a variety of documents that can be useful for different purposes.
-- [RegulatoryCompliance](./EduDocuments/RegulatoryCompliance)
-    - [Security and Privacy Controls for Information Systems and Organizations](./EduDocuments/RegulatoryCompliance//800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf "PDF")
-        - [Spreadsheet](./EduDocuments/RegulatoryCompliance/800-53r5/sp800-53r5-control-catalog.xlsx "XLSX")
-    - [Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule](./EduDocuments/RegulatoryCompliance/800-66r2/NIST.SP.800-66r2.pdf "PDF")
-    - [Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations](./EduDocuments/RegulatoryCompliance/800-171/NIST.SP.800-171r2.pdf "PDF")
-        - [Spreadsheet](./EduDocuments/RegulatoryCompliance/800-171/sp800-171r2-security-reqs.xlsx "XLSX")
-    - [Framework for Improving Critical Infrastructure Cybersecurity](./EduDocuments/RegulatoryCompliance/NIST.CSWP.04162018.pdf "PDF")
-- [Continuous Learning](./EduDocuments/Continuous-Learning/)
-    - [Generative AI](./EduDocuments/Continuous-Learning/Generative-AI/)
-    - [Privacy](./EduDocuments/Continuous-Learning/Privacy/ "Learn about digital privacy.")
-    - [US State Surveillance & Psychological Operations](./EduDocuments/Continuous-Learning/US-State_Surveillance-Psyops/ "Learn about state-sanctioned psyops in the US and abroad.")
-- [Starter Penetration Testing Resources by TCM Security](./EduDocuments/Pentest_Resources-TCM_Security/ "Resources for pentesters in the making.")
-- [Sample Datasets](./EduDocuments/Sample_Datasets/ "A collection of datasets to practice working on.")
+This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./CheatSheets/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") and [Networking-Basics](./CheatSheets/Networking-Basics/) for learners. 
 
-### [CheatSheets](./CheatSheets)
+Beyond that, you'll find more advanced, technically focused reference guides on specific topics. There's a load of information on common web application vulnerabilities and how to exploit them in [Web-Applications](./CheatSheets/Web-Applications/). I'm also in the process of building a collection of [Power-Commands](./CheatSheets/Power-Commands/) for different scenarios, with the goal of having something for every stage of a pentest.
 
-This directory contains various files, notably [Maderas' list of necessary cybersecurity skills](./CheatSheets/Get_Started-MaderasSecurityArsenal.md "Maderas Security Arsenal") for learners. It also has a few [text processing](./CheatSheets/text-processing/ "Directory") reference docs, and a list of [search engines for pentesters](./CheatSheets/Search_Engines_for_Pentesters.jpg "Search Engines for Pentesters").
+### [Web-Applications](./CheatSheets/Web-Applications/)
+<details><summary>More</summary>
+Documents regarding common web application vulnerabilities, including the OWASP Top Ten. Each with code examples or injection payloads. <a href="./CheatSheets/Web-Applications/XSS.md">XSS</a>, <a href="./CheatSheets/Web-Applications/SSRF_bypassFilters.md">SSRF</a>, and <a href="./CheatSheets/Web-Applications/CORS.md">CORS</a> are just a few examples. The <a href="./CheatSheets/Web-Applications/WebApp-ExploitsChecklist.pdf">WebApp Exploit Checklist</a> is a great visual reference.
+</details>
 
-#### [Web-Applications](./Web-Applications)
+## [EduDocuments](./EduDocuments)
 
-Here you'll find documents for common web application vulnerabilities, like those of the OWASP Top Ten. Each document is different, but all of them contain code examples, injection payloads, that could theoretically be used in the wild. [XSS](./Web-Applications/XSS.md), [SSRF], and [CORS](./Web-Applications/CORS.md) are just a few examples. The [WebApp Exploit Checklist](./Web-Applications/WebApp-ExploitsChecklist.pdf) is a great visual reference.
+A collection of documents I found myself referring back to for learning.
 
-### [Tools](./Tools)
+<details><summary>More</summary>
+
+<details><summary>Continuous Learning</summary>
+<ul style="margin-left: 0; list-style: none">
+  <li><a href="./EduDocuments/Continuous-Learning/">Continuous Learning</a>
+    <ul style="margin-left: 20px">
+      <li><a href="./EduDocuments/Continuous-Learning/Generative-AI/">Generative AI</a></li>
+      <li><a href="./EduDocuments/Continuous-Learning/Digital-Privacy-Freedom">Digital Privacy & Freedom</a></li>
+      <li><a href="./EduDocuments/Continuous-Learning/US-State_Surveillance-Psyops/">US State Surveillance & Psychological Operations</a></li>
+    </ul>
+  </li>
+  <li><a href="./EduDocuments/Pentest_Resources-TCM_Security/">Starter Penetration Testing Resources by TCM Security</a></li>
+  <li><a href="./EduDocuments/Sample_Datasets/">Sample Datasets</a></li>
+</ul>
+</details>
+
+<details><summary>Regulatory Compliance</summary>
+<ul style="margin-left: 0; list-style: none">
+  <li><a href="./EduDocuments/RegulatoryCompliance">Regulatory Compliance</a>
+    <ul style="margin-left: 20px">
+      <li><a href="./EduDocuments/RegulatoryCompliance/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf">Security and Privacy Controls for Information Systems and Organizations</a>
+        <ul style="margin-left: 40px">
+          <li><a href="./EduDocuments/RegulatoryCompliance/800-53r5/sp800-53r5-control-catalog.xlsx">Spreadsheet</a></li>
+        </ul>
+      </li>
+      <li><a href="./EduDocuments/RegulatoryCompliance/800-66r2/NIST.SP.800-66r2.pdf">Implementing HIPAA Security Rule</a></li>
+      <li><a href="./EduDocuments/RegulatoryCompliance/800-171/NIST.SP.800-171r2.pdf">Protecting Controlled Unclassified Information</a>
+        <ul style="margin-left: 40px">
+          <li><a href="./EduDocuments/RegulatoryCompliance/800-171/sp800-171r2-security-reqs.xlsx">Spreadsheet</a></li>
+        </ul>
+      </li>
+      <li><a href="./EduDocuments/RegulatoryCompliance/NIST.CSWP.04162018.pdf">Framework for Improving Critical Infrastructure Cybersecurity</a></li>
+    </ul>
+  </li>
+</ul>
+</details>
+
+</details>
+
+## [Tools](./Tools)
+
+A collection of my scripts I've found repeated use for in multiple scenarios.
 
 <details><summary>Personal automation scripts</summary>
 
@@ -49,14 +80,15 @@ Here you'll find documents for common web application vulnerabilities, like thos
 
 [`Reset-DockerWslIntergration.ps1`](./Tools/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
-[`Useful-Repositories/README.md`](./Useful-Repositories/README.md): A document with links to useful cybersecurity-related GitHub repositories.
+[`Useful-Repositories/README.md`](./Tools/Useful-Repositories.md): A document with links to useful cybersecurity-related GitHub repositories.
 
 </details>
 
 ## How to Contribute
-This project could be way better than it is, we both know that.
 
-Please consider contributing your own knowledge files, automation scripts, add to the [Useful Repositories README](./Useful-Repositories/README.md), and see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
+Please feel encouraged to contribute your own knowledge files, automation scripts, or useful repository link(s). Links go in the [Useful-Repositories document](./Useful-Repositories/README.md).
+
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
 
 ## 📜 License
 
