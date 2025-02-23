@@ -4,7 +4,7 @@
 """
 Filename: hashfile_validator.py
 Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
-Date: 2024-09-29
+Date: 2025-02-22
 Version: v0.2.0
 License: MIT (c) 2024 Daethyra Carino
 Description: A CLI program that uses hashlib to quickly validate whether a cryptographic hash checksum matches the expected string. The program detects the hash algorithm based on the length of the user-provided checksum, calculates the checksum, and compares the two strings.
