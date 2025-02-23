@@ -12,14 +12,10 @@ Features:
 - Dual file links (local preview + GitHub view)
 - Responsive Bootstrap design with Font Awesome icons
 - First-level directory auto-expansion
-- Pagination support for large repositories
 
 Dependencies:
 - Python 3.6+
 - requests library
-- Regular expressions (re)
-- Bootstrap CSS (CDN)
-- Font Awesome Icons (CDN)
 
 Environment Variables:
 Set the following variables in the script:
@@ -34,8 +30,7 @@ Usage:
 
 Security Note:
 - Never commit scripts with hardcoded tokens
-- For public use, implement environment variables
-- Token requires 'repo' scope for private repositories
+- Token requires 'Metadata' and 'Contents' scopes
 
 Output:
 Generates Index.html with interactive directory visualization
