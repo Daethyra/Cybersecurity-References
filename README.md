@@ -15,49 +15,6 @@ Beyond that, you'll find more advanced, technically focused reference guides on 
 Documents regarding common web application vulnerabilities, including the OWASP Top Ten. Each with code examples or injection payloads. <a href="./CheatSheets/Web-Applications/XSS.md">XSS</a>, <a href="./CheatSheets/Web-Applications/SSRF_bypassFilters.md">SSRF</a>, and <a href="./CheatSheets/Web-Applications/CORS.md">CORS</a> are just a few examples. The <a href="./CheatSheets/Web-Applications/WebApp-ExploitsChecklist.pdf">WebApp Exploit Checklist</a> is a great visual reference.
 </details>
 
-## [EduDocuments](./EduDocuments)
-
-A collection of documents I found myself referring back to for learning.
-
-<details><summary>More</summary>
-
-<details><summary>Continuous Learning</summary>
-<ul style="margin-left: 0; list-style: none">
-  <li><a href="./EduDocuments/Continuous-Learning/">Continuous Learning</a>
-    <ul style="margin-left: 20px">
-      <li><a href="./EduDocuments/Continuous-Learning/Generative-AI/">Generative AI</a></li>
-      <li><a href="./EduDocuments/Continuous-Learning/Digital-Privacy-Freedom">Digital Privacy & Freedom</a></li>
-      <li><a href="./EduDocuments/Continuous-Learning/US-State_Surveillance-Psyops/">US State Surveillance & Psychological Operations</a></li>
-    </ul>
-  </li>
-  <li><a href="./EduDocuments/Pentest_Resources-TCM_Security/">Starter Penetration Testing Resources by TCM Security</a></li>
-  <li><a href="./EduDocuments/Sample_Datasets/">Sample Datasets</a></li>
-</ul>
-</details>
-
-<details><summary>Regulatory Compliance</summary>
-<ul style="margin-left: 0; list-style: none">
-  <li><a href="./EduDocuments/RegulatoryCompliance">Regulatory Compliance</a>
-    <ul style="margin-left: 20px">
-      <li><a href="./EduDocuments/RegulatoryCompliance/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf">Security and Privacy Controls for Information Systems and Organizations</a>
-        <ul style="margin-left: 40px">
-          <li><a href="./EduDocuments/RegulatoryCompliance/800-53r5/sp800-53r5-control-catalog.xlsx">Spreadsheet</a></li>
-        </ul>
-      </li>
-      <li><a href="./EduDocuments/RegulatoryCompliance/800-66r2/NIST.SP.800-66r2.pdf">Implementing HIPAA Security Rule</a></li>
-      <li><a href="./EduDocuments/RegulatoryCompliance/800-171/NIST.SP.800-171r2.pdf">Protecting Controlled Unclassified Information</a>
-        <ul style="margin-left: 40px">
-          <li><a href="./EduDocuments/RegulatoryCompliance/800-171/sp800-171r2-security-reqs.xlsx">Spreadsheet</a></li>
-        </ul>
-      </li>
-      <li><a href="./EduDocuments/RegulatoryCompliance/NIST.CSWP.04162018.pdf">Framework for Improving Critical Infrastructure Cybersecurity</a></li>
-    </ul>
-  </li>
-</ul>
-</details>
-
-</details>
-
 ## [Tools](./Tools)
 
 A collection of my scripts I've found repeated use for in multiple scenarios.
