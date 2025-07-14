@@ -31,4 +31,3 @@ CIDR notation provides a concise way to represent networks and subnets by specif
 #### More Resources
 [Seven Second Subnetting](https://www.youtube.com/watch?v=ZxAwQB8TZsM)
 [Subnet Spreadsheet (Google Drive)](https://drive.google.com/file/d/1ETKH31-E7G-7ntEOlWGZcDZWuukmeHFe/view) / [Local Spreadsheet](file:///D:\Documents\Obsidian%20Vault\cyberspace\PNPT%20Notes\_assets\Subnet-Guide.xlsx)
-## Part 2
