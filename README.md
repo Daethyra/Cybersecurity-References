@@ -22,6 +22,8 @@ A collection of my scripts I've found repeated use for in multiple scenarios.
 
 <!-- <details><summary>Personal automation scripts</summary> -->
 
+[comprehensive_recon.sh](./Tools/comprehensive_recon.sh): CLI tool that performs comprehensive reconnaissance using assetfinder, amass, certspotter, sublist3r, httprobe, waybackurls, whatweb, nmap, and eyewitness(optional). "Has been tested only on kali. To be run in root directory"
+
 [directory_visualizer.py](./Tools/directory_visualizer.py): CLI tool that creates a hierarchical visualization of a directory's nested contents.
 
 [`extract_video_audio.py`](./Tools/extract_video_audio.py): CLI tool that creates an MP3 audio file from a MP4 file, or files in a directory.
