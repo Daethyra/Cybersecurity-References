@@ -1,157 +1,488 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Matrix Rain</title>
+    <title>Digital Solidarity Network</title>
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self';
+                   script-src 'self' 'unsafe-inline';
+                   style-src 'self' 'unsafe-inline';
+                   img-src 'self' data:">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: black;
+        /* Critical CSS to prevent white flash */
+        html, body {
+            background: black !important;
+            margin: 0 !important;
+            overflow: hidden !important;
         }
         canvas {
-            display: block;
-            image-rendering: crisp-edges;
+            background: black;
         }
+
+        /* Main CSS */
+        body {
+            font-family: system-ui, sans-serif;
+            color: rgb(255, 255, 255);
+        }
+
+        /* Matrix Canvas */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Content Overlay System */
+        .content-wrapper {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* Scrollable Content */
+        .scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        /* Layout Structure */
+        .content-column {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        .section {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .banner {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Link Styling */
+        a.link-block {
+            display: block;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a.link-block:hover {
+            background: rgba(0, 255, 0, 0.05);
+            border-color: rgba(0, 255, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .link-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .link-title {
+            flex: 1;
+        }
+
+        .link-description {
+            color: #d0d0d0;
+            font-size: 0.85em;
+            text-align: right;
+            padding-left: 1rem;
+            max-width: 60%;
+        }
+
+        .dropdown-container {
+            position: relative;
+            margin: 0.5rem 0;
+        }
+
+        .dropdown-button {
+            width: 100%;
+            padding: 1rem;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 1em;
+            margin: 0.5rem 0;
+            border-radius: 0;
+        }
+
+        .dropdown-button:hover {
+            background: rgba(0, 255, 0, 0.05);
+            border-color: rgba(0, 255, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .dropdown-button::after {
+            content: "▼";
+            font-size: 0.8em;
+            transition: transform 0.2s ease;
+            color: #00ff88;
+        }
+
+        .dropdown-button.expanded::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            display: none;
+            padding-left: 1rem;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content a {
+            transform: translateX(10px);
+            margin: 0.5rem 0;
+        }
+
+        /* Button text styling */
+        .button-title {
+            color: #00ff88;
+            font-weight: bold;
+            display: block;
+            flex: 1;
+        }
+
+        .button-description {
+            color: #d0d0d0;
+            font-size: 0.9em;
+            text-align: right;
+            font-weight: normal;
+            display: block;
+            margin-top: 0.25rem;
+            margin-right: 1rem;
+        }
+
+        /* No-Script Warning */
+        .noscript-warning {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #330000;
+            color: #ff4444;
+            padding: 1rem;
+            text-align: center;
+            z-index: 9999;
+        }
+
+        /* Tor Browser Fallback */
+        @media (pointer: coarse) {
+            .dropdown-content {
+                display: block !important;
+            }
+        }
+    
+    /* i hate css. :) */
     </style>
 </head>
 <body>
-    <!-- 
-        Filename: matrix-rain.html
-        Author: Daethyra Carino <109057945+Daethyra@users.noreply.github.com>
-        Date: 2025-01-26
-        Version: v0.1.1
-        License: MIT (c) 2025 Daethyra Carino
-        Description: A responsive, multilingual Matrix-style code rain animation featuring glowing green characters (Katakana, Latin, Hanzi, Hangul) with dynamic trails, variable fall speeds, and random resets. Built with HTML5 Canvas.
-    -->
+    <noscript>
+        <div class="noscript-warning">
+            ⚠️ Some features require JavaScript. For Tor Browser users, basic functionality remains available.
+        </div>
+    </noscript>
+
     <canvas id="matrix"></canvas>
 
+    <div class="content-wrapper">
+        <div class="scroll-content">
+            <div class="content-column">
+                <div class="banner">
+                    <h2>Digital Solidarity Network</h2>
+                    <p>We Keep Us Safe</p>
+                </div>
+
+                <!-- Link sections -->
+                <!-- currently missing: the Proton suite -->
+                <section class="section" id="resources">
+                    <h3>Mental Health Resources</h3>
+                    <div class="dropdown-container">
+                        <button class="dropdown-button" onclick="toggleDropdown(event)">
+                            <span class="button-title">Crisis Support Networks</span>
+                            <span class="button-description">you are not alone</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="https://988lifeline.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-block">24/7 Suicide Prevention</a>
+
+                            <a href="https://www.thetrevorproject.org/get-help/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-block">Trevor Project (LGBTQ+ Crisis Support)</a>
+
+                            <a href="https://www.thehotline.org/get-help/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-block">Domestic Violence Hotline</a>
+
+                            <a href="https://holistic-security.tacticaltech.org/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Holistic Security Guide</span>
+                                    <span class="link-description">strategy manual to help human rights defenders maintain their well-being in action</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="digital-security">
+                    <h3>Digital Security Resources</h3>
+                    
+                    <!-- First dropdown: Online Security Guides -->
+                    <div class="dropdown-container">
+                        <button class="dropdown-button" onclick="toggleDropdown(event)">
+                            <span class="button-title">Online Security Guides</span>
+                            <span class="button-description">beginners start here</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="https://ssd.eff.org/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Surveillance Self-Defense (EFF)</span>
+                                    <span class="link-description">beginner's first step</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.accessnow.org/wp-content/uploads/2020/10/A-first-look-at-digital-security-OCT2020.pdf" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Access Now's' First Look at Digital Security</span>
+                                    <span class="link-description">easiest to read and understand - perfect for older generations and those with low technological know-how</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://securitylab.amnesty.org/digital-resources/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Amnesty International's Security Lab Hub</span>
+                                    <span class="link-description">filter resources tailored to your demographic's needs</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://securityinabox.org/en/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Security In A Box</span>
+                                    <span class="link-description">available in 30+ languages</span>
+                                </div>
+                            </a>
+
+                            <a href="https://prism-break.org/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">PRISM Break</span>
+                                    <span class="link-description">disconnect from mass surveillance</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Second dropdown: Emergency Cybersecurity Help -->
+                    <div class="dropdown-container">
+                        <button class="dropdown-button" onclick="toggleDropdown(event)">
+                            <span class="button-title">Emergency Cybersecurity Help</span>
+                            <span class="button-description">immediate help</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="https://accessnow.org/help" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Access Now's Cybersecurity Helpline</span>
+                                    <span class="link-description">contact professionals for free help</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://digitalfirstaid.org/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="link-block">
+                                <div class="link-content">
+                                    <span class="link-title">Digital First Aid Kit</span>
+                                    <span class="link-description">action steps and immediate guidance</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="projects">
+                    <h3>Encrypted Technologies</h3>
+                    <a href="https://getsession.org/download" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="link-block">
+                        <div class="link-content">
+                                <span class="link-title">Session, Private Communications Platform</span>
+                                <span class="link-description">decentralized, open-source,<br> onion-routed network</span>
+                        </div>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Canvas setup - ID changed to match HTML
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-
-        // Character sets
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const roman = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@*#-%$';
-        const hanzi = Array.from({length: 200}, (_, i) => String.fromCharCode(0x4E00 + i));
-        const hangul = Array.from({length: 200}, (_, i) => String.fromCharCode(0xAC00 + i));
         
-        const chars = [
-            katakana,
-            roman,
-            hanzi.join(''),
-            hangul.join('')
-        ].join('');
-
-        let charsArray = chars.split('').filter(c => c.trim() !== '');
-        if (charsArray.length === 0) charsArray = ['A'];
-
-        let fontSize = 16;
-        let columns = [];
-        let drops = [];
-        const trailLength = 5;
-        const lineHeightMultiplier = 1.25;
-
-        function initialize() {
-            fontSize = Math.floor(window.innerWidth / 90);
-            fontSize = Math.min(Math.max(fontSize, 14), 24);
-            ctx.font = `${fontSize}px "MS Gothic", "AppleGothic", "Monaco", "Consolas", monospace`;
-
-            columns = [];
-            drops = [];
-            let x = 0;
-            
-            while (x < canvas.width) {
-                const randomChar = charsArray[Math.floor(Math.random() * charsArray.length)];
-                const charWidth = ctx.measureText(randomChar).width;
-                const columnWidth = charWidth * 1.2;
-                
-                if (x + columnWidth > canvas.width) break;
-                
-                columns.push({
-                    width: columnWidth,
-                    x: x
-                });
-                
-                drops.push({
-                    y: -Math.random() * canvas.height/2,
-                    speed: Math.random() * 0.5 + 0.5,
-                    lastChar: '',
-                    trail: []
-                });
-                
-                x += columnWidth;
-            }
+        // Set canvas to full window size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Matrix characters (Katakana, Latin, numbers, symbols)
+        const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@%&*()[]{}<>";
+        const charArray = chars.split('');
+        
+        // Font size and columns
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        // Drops array - one per column
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
         }
-
-        function resizeCanvas() {
+        
+        // Effect controls - removed button dependencies
+        let animationId = null;
+        const isPaused = false; // Always running
+        const speed = 10; // Fixed speed
+        
+        // Draw function
+        function draw() {
+            // Semi-transparent black overlay for trailing effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = `${fontSize}px 'Courier New', monospace`;
+            ctx.textAlign = 'start';
+            
+            for (let i = 0; i < drops.length; i++) {
+                // Get random character
+                const char = charArray[Math.floor(Math.random() * charArray.length)];
+                
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                
+                // Draw character with gradient effect
+                if (Math.random() > 0.975) {
+                    // Head character - bright white
+                    ctx.fillStyle = '#ffffff';
+                } else {
+                    // Trail characters - green with varying intensity
+                    const intensity = 100 + Math.floor(155 * Math.random());
+                    ctx.fillStyle = `rgb(0, ${intensity}, 0)`;
+                }
+                
+                ctx.fillText(char, x, y);
+                
+                // Reset drop if it reaches the bottom
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                // Always move drop down (no pause functionality)
+                drops[i]++;
+            }
+            
+            // Animation loop with fixed speed
+            setTimeout(() => {
+                animationId = requestAnimationFrame(draw);
+            }, 25 - (speed * 1.1));
+        }
+        
+        // Initialize the effect
+        draw();
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initialize();
-        }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        let lastFrame = performance.now();
-        const fpsInterval = 1000/60;
-
-        function draw() {
-            const now = performance.now();
-            const elapsed = now - lastFrame;
-
-            if (elapsed > fpsInterval) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.09)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                for (let i = 0; i < columns.length; i++) {
-                    const column = columns[i];
-                    const drop = drops[i];
-
-                    // Update trail
-                    drop.trail.unshift(charsArray[Math.floor(Math.random() * charsArray.length)]);
-                    if (drop.trail.length > trailLength) {
-                        drop.trail.pop();
-                    }
-
-                    // Column reset logic
-                    if (Math.random() < 0.004 || drop.y * fontSize > canvas.height * 1.2) {
-                        drop.y = -trailLength;
-                        drop.speed = Math.random() * 0.5 + 0.5;
-                        drop.trail = [];
-                    }
-
-                    // Draw characters
-                    for (let j = 0; j < drop.trail.length; j++) {
-                        const pos = drop.y - j;
-                        if (pos < 0) continue;
-
-                        const char = drop.trail[j];
-                        const charWidth = ctx.measureText(char).width;
-                        const xPos = column.x + (column.width - charWidth)/2;
-                        const yPos = pos * fontSize * lineHeightMultiplier;
-                        
-                        // Direct rendering without shadow effects
-                        if (j === 0) {
-                            ctx.fillStyle = `rgb(180, 255, 180)`; // Bright leading character
-                        } else {
-                            const fade = 180 - (j * 30);
-                            ctx.fillStyle = `rgba(0, ${fade}, 0, ${1 - (j/trailLength)})`;
-                        }
-                        
-                        ctx.fillText(char, xPos, yPos);
-                    }
-
-                    // Update position
-                    drop.y += drop.speed;
+            
+            // Recalculate columns after resize
+            const newColumns = canvas.width / fontSize;
+            
+            // Adjust drops array for new column count
+            if (newColumns > drops.length) {
+                // Add new columns
+                for (let i = drops.length; i < newColumns; i++) {
+                    drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
                 }
-
-                lastFrame = now - (elapsed % fpsInterval);
+            } else if (newColumns < drops.length) {
+                // Remove extra columns
+                drops.length = newColumns;
             }
-
-            requestAnimationFrame(draw);
+        });
+        
+        // Dropdown toggle function
+        function toggleDropdown(event) {
+            const button = event.currentTarget;
+            const container = button.closest('.dropdown-container');
+            const content = container.querySelector('.dropdown-content');
+            
+            // Toggle the expanded class on the button
+            button.classList.toggle('expanded');
+            
+            // Toggle the show class on the dropdown content
+            content.classList.toggle('show');
         }
-
-        draw();
+    
+    // I HATE JAVASCRIPT OMFGGGG
     </script>
 </body>
 </html>

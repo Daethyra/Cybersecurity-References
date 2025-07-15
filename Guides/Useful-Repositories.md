@@ -28,8 +28,14 @@
 #### [HackTricks](https://book.hacktricks.xyz/)
 - **Description**: HackTricks is an extensive resource containing cutting-edge hacking techniques, maintained by security researcher Carlos Polop. It covers a vast array of topics including pentesting methodologies, privilege escalation guides for multiple operating systems, network protocols exploitation, web vulnerabilities, wireless hacking techniques, and more. The repository is regularly updated with new attack vectors and is complemented by an online version (book.hacktricks.xyz) for easier navigation. It's particularly valuable for both beginner and experienced pentesters, offering practical examples, commands, and detailed explanations for various attack scenarios.
 
+#### [JSFuck](https://github.com/aemkei/jsfuck)
+- **Description**: Write any JavaScript with 6 Characters: `[]()!+`. JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code. It does not depend on a browser, so you can even run it on Node.js.
+
 #### [NBP](https://github.com/NeverWonderLand/NBP)
 - **Description**: The New Blood Project (NBP) is a comprehensive resource for learning about hacktivism. It contains various files and documents that cover a wide range of topics including terminal basics, types of penetration testing, tips for penetration testing, file uploads, and more. Additionally, the repository provides links to other resources and channels where users can learn and contribute to the community.
+
+#### [Nishang](https://github.com/samratashok/nishang)
+- **Description**: Nishang is a framework and collection of scripts and payloads which leverages PowerShell for offensive security, penetration testing and red teaming. Useful throughout pentests.
 
 #### [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg)
 - **Description**: The WSTG is a "comprehensive Open Source guide to testing the security of web applications and web services." It contains documents for testing in various scenarios, and these documents are easily downloaded if one knows the uniform identifiers. It also has a web security testing checklist in both excel and markdown formats.
@@ -45,6 +51,9 @@
 
 #### [recox](https://github.com/samhaxr/recox)
 - **Description**: RecoX is an incredibly versatile and powerful tool that is specifically designed to aid in the identification and classification of vulnerabilities within web applications. The script is able to detect vulnerabilities that are not typically included in the OWASP top ten vulnerabilities list, making it a valuable addition to any security professional's toolkit.
+
+#### [Rubeus](https://github.com/GhostPack/Rubeus)
+- **Description**: Rubeus is a C# toolset for raw Kerberos interaction and abuses.  Ticket requests and renewals, constrained delegation abuse, ticket harvesting/forgery/management, kerberoasting.
 
 #### [SepticX](https://github.com/TheonlyIcebear/SepticX)
 - **Description**: SepticX is a post-exploitation tool that is capable of automating a wide range of tasks, including gathering system information, executing system commands, and more.
@@ -63,6 +72,9 @@ Check list of online assets for a specific vulnerabilty via `httpx`:
 ```bash
 python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/httpx -l {INPUT} -path '/..\..\..\..\..\..\..\..\..\..\..\..\etc\passwd' -ms 'root:x:0:0' "
 ```
+
+#### [Spoofy](https://github.com/MattKeeley/Spoofy)
+- **Description**: `Spoofy` is a Python 3 program that checks if a list of domains can be spoofed based on SPF and DMARC records. Authoritative bulk lookups.
 
 #### [wesng](https://github.com/bitsadmin/wesng)
 - **Description**: Windows Exploit Suggester - Next Generation (WES-NG) is a tool based on the output of Windows' systeminfo utility which provides the list of vulnerabilities the OS is vulnerable to, including any exploits for these vulnerabilities. Every Windows OS between Windows XP and Windows 11, including their Windows Server counterparts, is supported.
