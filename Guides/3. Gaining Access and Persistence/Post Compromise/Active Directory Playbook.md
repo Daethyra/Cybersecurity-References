@@ -1,4 +1,4 @@
-# Typical Internal AD compromise route
+# Windows Active Directory Attack Steps
 ## First Strike (SMB)
 1. **Obtain an NTLMv2 Hash via Responder:** `sudo responder -I eth0 -dw`
 	- LLMNR Poisoning via `responder` captures NTLMv2 hashes whenever any user tries accessing a machine/file/share and mistypes the IP or hostname.

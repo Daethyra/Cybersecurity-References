@@ -6,7 +6,9 @@ Welcome to my personal cybersecurity toolkit.
 
 ## [Guides](./Guides)
 
-This directory contains various files including my personal hacking notes in numbered folders, [power commands](./Guides/Power%20Commands/) for quick referencing, a [Document](./Guides/Useful-Repositories.md "Tools and Resources") linking to cybersecurity tools and resources, and a [guide by Maderas](./Guides/0.%20Overviews/Get_Started-MaderasSecurityArsenal.md) for beginners.
+This directory contains various files including my personal hacking notes in numbered folders, [power commands](./Guides/Power%20Commands/) for quick referencing, a [Document](./Guides/Useful-Repositories.md "Tools and Resources") linking to cybersecurity tools and resources, and a [guide by Maderas](./Guides/1.%20Overviews/Get_Started-MaderasSecurityArsenal.md) for beginners.
+
+The most useful document, by my estimation, is the [Active Directory Playbook](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md) for concrete actionable steps.
 
 ### [Web Applications](./Guides/Power%20Commands/Web%20Applications/)
 <!-- <details><summary>More</summary> -->
