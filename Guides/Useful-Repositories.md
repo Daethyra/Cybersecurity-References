@@ -47,6 +47,9 @@
 - [InternalAllTheThings](https://swisskyrepo.github.io/InternalAllTheThings/)
 - [HardwareAllTheThings](https://swisskyrepo.github.io/HardwareAllTheThings/)
 
+#### [Photon](https://github.com/s0md3v/Photon)
+- **Description**: Incredibly fast crawler designed for OSINT that can extract in-scope URLs(including parameters), emails, social media accounts, secret keys, subdomain and DNS data, and more!
+
 #### [ProcessHacker](https://github.com/PKRoma/ProcessHacker)
 - **Description**: Process Hacker is a free and open-source process viewer and memory editor with unique features such as powerful process termination and a Regex memory searcher.
 
@@ -58,6 +61,9 @@
 
 #### [Rubeus](https://github.com/GhostPack/Rubeus)
 - **Description**: Rubeus is a C# toolset for raw Kerberos interaction and abuses.  Ticket requests and renewals, constrained delegation abuse, ticket harvesting/forgery/management, kerberoasting.
+
+#### [Scanbox](https://github.com/We5ter/Scanners-Box)
+- **Description**: A powerful and open-source toolkit for hackers and security automation that includes more than 10 categories of open source scanners from Github, including subdomain, database, middleware and other modular design scanner etc.
 
 #### [SepticX](https://github.com/TheonlyIcebear/SepticX)
 - **Description**: SepticX is a post-exploitation tool that is capable of automating a wide range of tasks, including gathering system information, executing system commands, and more.
@@ -114,11 +120,17 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 
 </details>
 
+#### [Geo-Recon](https://github.com/radioactivetobi/geo-recon)
+- **Description**: An OSINT CLI tool desgined to fast track IP Reputation and Geo-locaton look up for Security Analysts.
+
 #### [Pestudio](https://www.winitor.com/)
 - **Description**: A tool designed to detect suspicious artifacts within executable files to identify potentially malicious applications. It's particularly useful for initial assessment of suspicious files and malware analysis.
 
 #### [PersistenceSniper](https://github.com/last-byte/PersistenceSniper)
 - **Description**: PersistenceSniper is a Powershell module that can be used by Blue Teams, Incident Responders and System Administrators to hunt persistences implanted in Windows machines. It is also available on Powershell Gallery and it is digitally signed with a valid code signing certificate.
+
+#### [THOR Lite](https://www.nextron-systems.com/thor-lite/)
+- **Description**: A "fast and flexible multi-platform IOC and YARA scanner" that includes a file system and process scan module as well as module that extracts “autoruns” information on the different platforms. Shipped w/ the open source [signature base](https://github.com/Neo23x0/signature-base).
 
 ### Defensive Misc
 
@@ -142,6 +154,9 @@ python shadowclone.py -i assets-online --split 40 -o matched-vulns -c "/go/bin/h
 
 #### [The Book of Secret Knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
 - **Description**: "This repository is a collection of various materials and tools that I use every day in my work. It contains a lot of useful information gathered in one piece. It is an invaluable source of knowledge for me that I often look back on. For everyone, really. Here everyone can find their favourite tastes. But to be perfectly honest, it is aimed towards System and Network administrators, DevOps, Pentesters, and Security Researchers."
+
+#### [MSFTRecon](https://github.com/Arcanum-Sec/msftrecon)
+- **Description**: A reconnaissance tool designed for red teamers and security professionals to map Microsoft 365 and Azure tenant infrastructure.
 
 #### [PEASS-ng](https://github.com/carlospolop/PEASS-ng)
 - **Description**: PEASS-ng (Privilege Escalation Awesome ScriptsSuite) is aimed at detection of security vulnerabilities in local Windows/Linux/OSX environments.
