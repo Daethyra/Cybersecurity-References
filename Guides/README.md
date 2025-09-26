@@ -1,4 +1,5 @@
 # Useful Repositories
+A list of my favorite repositories.
 
 ## Table of Contents
 
