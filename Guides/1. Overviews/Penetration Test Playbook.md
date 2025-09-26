@@ -1,6 +1,6 @@
 This document is meant to serve as a platform-agnostic general overview for pentesting.
 # Recon
-See [[External Reconnaissance]]
+See [External Reconnaissance](../2.%20Scanning%20and%20Enumeration/External%20Reconnaissance.md)
 ## Passive Reconnaissance
 1. Look for registrar information. WHOIS, etc.
 2. Look for data breaches
@@ -18,7 +18,7 @@ See [[External Reconnaissance]]
 	1. list shares via: `smbclient -L \\192.168.1.42\`
 		1. try anonymous connection on existing shares: `smbclient \\192.168.1.42\IPCS$`
 # Exploitation
-See [[Active Directory Playbook#Windows Active Directory Recon]]'s section for explicit information on pwning services, not people.
+See [Active Directory Playbook](../3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md)'s Windows Active Directory Recon section for explicit information on pwning services, not people.
 ## Common Initial Foothold
 >Most initial footholds are gained by malicious email attachments or exploits against the user's browser.
 #### Example workflow:
@@ -26,7 +26,7 @@ See [[Active Directory Playbook#Windows Active Directory Recon]]'s section for e
 2. Create malicious macro'd excel sheet using the [Nishang framework](https://github.com/samratashok/nishang)
 3. Email excel sheet; use MSFconsole as C2 server(see [Spear Phishing Techniques](https://azeria-labs.com/initial-compromise/) section)
 
-Be intentional with the script you choose to embed in the excel spreadsheet. It doesn't have to be complicated, and you don't necessarily need the MSFconsole, you can embed a `DownloadString`(see [[PowerShell Evasion]]) call and use `netcat` as your listener.
+Be intentional with the script you choose to embed in the excel spreadsheet. It doesn't have to be complicated, and you don't necessarily need the MSFconsole, you can embed a `DownloadString`(see [PowerShell Evasion](../Power%20Commands/PowerShell/PowerShell%20Evasion.md)) call and use `netcat` as your listener.
 
 > Source: https://azeria-labs.com/initial-compromise/
 #### Subdomain Enumeration and Brute Forcing 
@@ -40,12 +40,12 @@ Be intentional with the script you choose to embed in the excel spreadsheet. It 
 - **Local System Enumeration:** You have a shell. Now what?
     - **User Context:** Who are you? (`whoami`, `ipconfig /all`, `env`)
     - **System Info:** What OS, architecture, patches? (`systeminfo`)
-    - **Running Processes/Services:** What's running? Can you hijack one? (`ps`, `tasklist`). Maybe then check [[DLL Hijacking Pentest Cheat Sheet]]
+    - **Running Processes/Services:** What's running? Can you hijack one? (`ps`, `tasklist`). Maybe then check [DLL Hijacking Pentest Cheat Sheet](../3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/DLL%20Hijacking/DLL%20Hijacking%20Pentest%20Cheat%20Sheet.md)
     - **Network Connections:** What other systems is this box talking to? (`netstat -ano`)
     - **Filesystem:** Looking for passwords, config files, sensitive data (e.g., `C:\Users\*\Documents\`, `C:\Windows\Panther\Unattend.xml`).
     - **Privilege Analysis:** What are your rights? (`whoami /priv`, `sudo -l` on Linux)
 - **Domain Enumeration (If in an AD environment):** map the domain structure, users, groups, computers, and trusts to identify paths for privilege escalation and lateral movement
-    - Tools: `PowerView`, `BloodHound`, `net user /domain`, `net group "Domain Admins" /domain`. Also see [[Active Directory Playbook#Tools]]
+    - Tools: `PowerView`, `BloodHound`, `net user /domain`, `net group "Domain Admins" /domain`. Also see [Active Directory Playbook](../3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md)'s Tools section
 ## Lateral Movement
 ### Uncredentialed Lateral Movement
 > Source: [2](https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide)

@@ -14,7 +14,7 @@ Enumerate Windows SMB information.
 `enum4linux 10.10.132.224 -UMSP`
 -> Enumerates users, anonymous login, domain SID, and more. Perfect for determining a host's domain name.
 ### LDAP
-See [[LDAP]] for comprehensive information and resource links.
+See [LDAP](../Initial%20Foothold/LDAP.md) for comprehensive information and resource links.
 >> "As a penetration tester, ignoring AD typically results in leaving a massive attack surface on the table. At the same time, organizations not implementing (or with weak) AD security also open themselves up to a plethora of attacks." [4](https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide)
 #### Tools
 ##### Nmap
@@ -62,7 +62,7 @@ crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> -M laps
 crackmapexec ldap <IP> -u <User> -p <Password> --kdcHost <Host> -M ldap-signing
 ```
 ### Antivirus
-See [[Abusing Exclusions To Evade Detection _ Dazzy Ddos.pdf]]
+See [Abusing Exclusions To Evade Detection _ Dazzy Ddos.pdf](../Evasion%20and%20Data%20Exfiltration/Abusing%20Exclusions%20To%20Evade%20Detection%20_%20Dazzy%20Ddos.pdf)
 1. `sc query windefend`
 >Query the Service Control Manager for Windows Defender
 >>I couldn't find a list of Anti-Virus service names online :(
@@ -152,7 +152,7 @@ TypeName: {'ACCESS_ALLOWED_ACE'}
 | `Get-ADUser -Filter * \| select Name`                          | List all domain users using the Active Directory PowerShell module Get-ADUser cmdlet and filter by the username |     |
 | `Get-DomainUser * \| Select-Object samaccountname,description` | Check the description field of all domain users for sensitive data such as passwords                            |     |
 ### Another Perspective on Uncredentialed Lateral Movement
-See [[Penetration Test Playbook#Uncredentialed Lateral Movement]]
+See [Penetration Test Playbook](../../1.%20Overviews/Penetration%20Test%20Playbook.md) Uncredentialed Lateral Movement
 > Source: [4](https://www.hackthebox.com/blog/active-directory-penetration-testing-cheatsheet-and-guide)
 
 ---
@@ -216,7 +216,7 @@ nxc smb 192.168.1.100 -u UserName -p 'PASSWORDHERE' --ntds vss
 1. `net user /add <username> <password> /domain`
 2. `net group "Domain Admins" <username> /ADD /DOMAIN`
 ### Golden Tickets
-You may wish to simply review [[Golden Diamond and Sapphire Attacks]] for technological details.
+You may wish to simply review [Golden Diamond and Sapphire Attacks](../Post%20Compromise/Kerberoasting/Golden%20Diamond%20and%20Sapphire%20Attacks.md) for technological details.
 #### Dump Service Principal Names (Kerberoasting)
 > Fetch Service Principal Names that are associated with normal user accounts, NOT machines. User generated SPNs are based on user-created  passwords, which means they're weaker, which means they can actually be cracked.
 
