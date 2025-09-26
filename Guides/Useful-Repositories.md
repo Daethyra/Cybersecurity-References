@@ -43,6 +43,10 @@
 #### [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 - **Description**: An extensive and constantly updated repository of payloads, tricks, and techniques useful for exploiting a wide range of vulnerabilities and bypassing security controls. It contains payloads for attacks such as injections (SQL, NoSQL, XPath), XXE, Command Injection, XSS, SSRF, and many others. The repository also offers methods for privilege escalation, post-exploitation, and data exfiltration on various platforms (Windows, Linux, macOS)
 
+**Also see:**
+- [InternalAllTheThings](https://swisskyrepo.github.io/InternalAllTheThings/)
+- [HardwareAllTheThings](https://swisskyrepo.github.io/HardwareAllTheThings/)
+
 #### [ProcessHacker](https://github.com/PKRoma/ProcessHacker)
 - **Description**: Process Hacker is a free and open-source process viewer and memory editor with unique features such as powerful process termination and a Regex memory searcher.
 
