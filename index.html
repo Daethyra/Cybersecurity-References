@@ -225,8 +225,7 @@
         <div class="scroll-content">
             <div class="content-column">
                 <div class="banner">
-                    <h2>Digital Solidarity Network</h2>
-                    <p>We Keep Us Safe</p>
+                    <h2>We Keep Us Safe</h2>
                 </div>
 
                 <!-- Link sections -->
@@ -268,7 +267,7 @@
                 </section>
 
                 <section class="section" id="digital-security">
-                    <h3>Digital Security Resources</h3>
+                    <h3>Activist Cybersecurity Resources</h3>
                     
                     <!-- First dropdown: Online Security Guides -->
                     <div class="dropdown-container">
@@ -388,6 +387,13 @@
         const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@%&*()[]{}<>";
         const charArray = chars.split('');
         
+        // Transgender flag colors in RGB
+        const transColors = [
+            {r: 91, g: 206, b: 250},   // Light Blue
+            {r: 245, g: 169, b: 184},  // Light Pink
+            {r: 255, g: 255, b: 255}   // White
+        ];
+        
         // Font size and columns
         const fontSize = 14;
         const columns = canvas.width / fontSize;
@@ -424,9 +430,9 @@
                     // Head character - bright white
                     ctx.fillStyle = '#ffffff';
                 } else {
-                    // Trail characters - green with varying intensity
-                    const intensity = 100 + Math.floor(155 * Math.random());
-                    ctx.fillStyle = `rgb(0, ${intensity}, 0)`;
+                    // Trail characters - randomly choose from transgender flag colors
+                    const color = transColors[Math.floor(Math.random() * transColors.length)];
+                    ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
                 }
                 
                 ctx.fillText(char, x, y);
