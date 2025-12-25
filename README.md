@@ -16,43 +16,42 @@ Welcome to my personal cybersecurity toolkit.
 
 My personal hacking notes are in the [Guides](./Guides/) directory, which also has a [power commands](./Guides/Power%20Commands/) subdir that covers [PowerShell](./Guides/Power%20Commands/PowerShell/), [scanning](./Guides/Power%20Commands/Scanning/), and [web applications](./Guides/Power%20Commands/Web%20Applications/).
 
-I have a [Useful Repositories document](./Guides/Useful-Repositories.md "Tools and Resources") where I link to the offensive and defensive tools I either use or really like in theory.
+I have a [Useful Repositories document](./Guides/README.md "Tools and Resources") where I link to the offensive and defensive tools I either use or really like in theory.
 
-Beginners should start with a [guide by Maderas](./Guides/1.%20Overviews/Get_Started-MaderasSecurityArsenal.md).
+Beginners should start with a [guide by Maderas](./Guides/Get_Started-MaderasSecurityArsenal.md).
 
 ### Internal Pentesting
 
-I find the [Active Directory Playbook](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md) and [Pentest Playbook](./Guides/1.%20Overviews/Penetration%20Test%20Playbook.md) to be my favorite resources.
-
-#### Playbooks
-- [Penetration Test Playbook](./Guides/1.%20Overviews/Penetration%20Test%20Playbook.md)
-- [Active Directory Playbook](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md)
+Favorite Resources: [Active Directory Playbook](./Guides/Post%20Compromise/Active%20Directory%20Playbook.md), [Pentest Playbook](./Guides/Penetration%20Test%20Playbook.md), and the [Useful Repositories](./Guides/README.md).
 
 #### Topics
-- [Networking](./Guides/1.%20Overviews/Networking/)
-- [Scanning and Enumeration](./Guides/2.%20Scanning%20and%20Enumeration/)
-  - [External Reconnaissance](./Guides/2.%20Scanning%20and%20Enumeration/External%20Reconnaissance.md)
-  - [Subverting Intrusion Detection Systems w/ Nmap](./Guides/2.%20Scanning%20and%20Enumeration/Subverting%20Intrusion%20Detection%20Systems.md)
-- [Gaining Access & Persistence](./Guides/3.%20Gaining%20Access%20and%20Persistence/)
-  - [Evasion & Data Exfiltration](./Guides/3.%20Gaining%20Access%20and%20Persistence/Evasion%20and%20Data%20Exfiltration/)
-    - [Encrypted Powershell](./Guides/3.%20Gaining%20Access%20and%20Persistence/Evasion%20and%20Data%20Exfiltration/Encrypted%20PowerShell.md)
-    - [Abusing WinDef Exclusions to Evade Detection](./Guides/3.%20Gaining%20Access%20and%20Persistence/Evasion%20and%20Data%20Exfiltration/Abusing%20Exclusions%20To%20Evade%20Detection%20_%20Dazzy%20Ddos.pdf)
-  - [Initial Foothold](./Guides/3.%20Gaining%20Access%20and%20Persistence/Initial%20Foothold/)
-    - [LDAP](./Guides/3.%20Gaining%20Access%20and%20Persistence/Initial%20Foothold/LDAP.md)
-    - [MSFVenom Payload Generation](./Guides/3.%20Gaining%20Access%20and%20Persistence/Initial%20Foothold/Payload%20Generation%20-%20MSFVenom.md)
-    - [Cloudflare to Bypass Cloudflare](./Guides/3.%20Gaining%20Access%20and%20Persistence/Initial%20Foothold/Using%20Cloudflare%20to%20bypass%20Cloudflare%20–%20Certitude%20Blog.pdf)
-  - [Post Compromise](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/)
-    - [Kerberoasting](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Kerberoasting/)
-      - [Golden, Diamond, & Sapphire Attacks](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Kerberoasting/Golden%20Diamond%20and%20Sapphire%20Attacks.md)
-      - [Service Principal Name (SPN) Discovery](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Kerberoasting/Service%20Principal%20Name%20(SPN)%20Discovery.md)
-    - [OS Enumeration](./Guides/3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/OS%20Enumeration.md)
-  - [Windows Persistence](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/)
-    - [DLL Hijacking](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/DLL%20Hijacking/)
-      - [DLL Hijacking Overview](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/DLL%20Hijacking/DLL%20Hijacking%20Overview.md)
-      - [DLL Hijacking Pentest Cheatsheet](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/DLL%20Hijacking/DLL%20Hijacking%20Pentest%20Cheat%20Sheet.md)
-    - [New User Account](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/Create%20New%20User%20Account.md)
-    - [Registry Persistence](./Guides/3.%20Gaining%20Access%20and%20Persistence/Windows%20Persistence/Registry%20Persistence.md)
 
+- [Penetration Test Playbook](./Guides/Penetration%20Test%20Playbook.md)
+- [Active Directory Lab Write Up](./Guides/Active%20Directory%20Lab%20Write%20Up.md)
+- [Search Engines for Pentesters](./Guides/Search_Engines_for_Pentesters.jpg)
+- [Subverting Intrusion Detection Systems w/ Nmap](./Guides/Subverting%20Intrusion%20Detection%20Systems.md)
+
+
+- [Evasion & Data Exfiltration](./Guides/Evasion%20and%20Data%20Exfiltration/)
+  - [Encrypted Powershell](./Guides/Evasion%20and%20Data%20Exfiltration/Encrypted%20PowerShell.md)
+  - [Abusing WinDef Exclusions to Evade Detection](./Guides/Evasion%20and%20Data%20Exfiltration/Abusing%20Exclusions%20To%20Evade%20Detection%20_%20Dazzy%20Ddos.pdf)
+- [Initial Foothold](./Guides/Initial%20Foothold/)
+  - [LDAP](./Guides/Initial%20Foothold/LDAP.md)
+  - [MSFVenom Payload Generation](./Guides/Initial%20Foothold/Payload%20Generation%20-%20MSFVenom.md)
+  - [Cloudflare to Bypass Cloudflare](./Guides/Initial%20Foothold/Using%20Cloudflare%20to%20bypass%20Cloudflare%20–%20Certitude%20Blog.pdf)
+- [Networking](./Guides/Networking/)
+- [Post Compromise](./Guides/Post%20Compromise/)
+  - [Active Directory Playbook](./Guides/Post%20Compromise/Active%20Directory%20Playbook.md)
+  - [Kerberoasting](./Guides/Post%20Compromise/Kerberoasting/)
+    - [Golden, Diamond, & Sapphire Attacks](./Guides/Post%20Compromise/Kerberoasting/Golden%20Diamond%20and%20Sapphire%20Attacks.md)
+    - [Service Principal Name (SPN) Discovery](./Guides/Post%20Compromise/Kerberoasting/Service%20Principal%20Name%20(SPN)%20Discovery.md)
+  - [OS Enumeration](./Guides/Post%20Compromise/OS%20Enumeration.md)
+- [Windows Persistence](./Guides/Windows%20Persistence/)
+  - [DLL Hijacking](./Guides/Windows%20Persistence/DLL%20Hijacking/)
+    - [DLL Hijacking Overview](./Guides/Windows%20Persistence/DLL%20Hijacking/DLL%20Hijacking%20Overview.md)
+    - [DLL Hijacking Pentest Cheatsheet](./Guides/Windows%20Persistence/DLL%20Hijacking/DLL%20Hijacking%20Pentest%20Cheat%20Sheet.md)
+  - [New User Account](./Guides/Windows%20Persistence/Create%20New%20User%20Account.md)
+  - [Registry Persistence](./Guides/Windows%20Persistence/Registry%20Persistence.md)
 
 
 ### [Web Applications](./Guides/Power%20Commands/Web%20Applications/)
@@ -91,7 +90,7 @@ A collection of my scripts I've found repeated use for in multiple scenarios.
 
 ## How to Contribute
 
-Please feel encouraged to contribute your own [Guide](./Guides/), automation scripts, or [useful repository link(s)](./Guides/Useful-Repositories.md).
+Please feel encouraged to contribute your own [Guide](./Guides/), automation scripts, or [useful repository link(s)](./Guides/README.md).
 
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
 
