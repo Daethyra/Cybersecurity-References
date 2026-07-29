@@ -14,7 +14,7 @@ Welcome to my personal cybersecurity toolkit.
 
 ## [Guides](./Guides)
 
-My personal hacking notes are in the [Guides](./Guides/) directory, which also has a [power commands](./Guides/Power%20Commands/) subdir that covers [PowerShell](./Guides/Power%20Commands/PowerShell/), [scanning](./Guides/Power%20Commands/Scanning/), and [web applications](./Guides/Power%20Commands/Web%20Applications/).
+My personal hacking notes are in the [Guides](./Guides/) directory, which also has a [power commands](./Guides/Power%20Commands/) subdir that covers [PowerShell](./Guides/Power%20Commands/PowerShell%20Evasion.md), [scanning](./Guides/Power%20Commands/Scanning/), and [web applications](./Guides/Power%20Commands/Web%20Applications/).
 
 I have a [Useful Repositories document](./Guides/README.md "Tools and Resources") where I link to the offensive and defensive tools I either use or really like in theory.
 
@@ -39,6 +39,7 @@ Favorite Resources: [Active Directory Playbook](./Guides/Post%20Compromise/Activ
   - [LDAP](./Guides/Initial%20Foothold/LDAP.md)
   - [MSFVenom Payload Generation](./Guides/Initial%20Foothold/Payload%20Generation%20-%20MSFVenom.md)
   - [Cloudflare to Bypass Cloudflare](./Guides/Initial%20Foothold/Using%20Cloudflare%20to%20bypass%20Cloudflare%20–%20Certitude%20Blog.pdf)
+- [Metasploit](./Guides/Metasploit%20Framework/)
 - [Networking](./Guides/Networking/)
 - [Post Compromise](./Guides/Post%20Compromise/)
   - [Active Directory Playbook](./Guides/Post%20Compromise/Active%20Directory%20Playbook.md)
@@ -84,7 +85,7 @@ A collection of my scripts I've found repeated use for in multiple scenarios.
 
 [`Reset-DockerWslIntergration.ps1`](./Tools/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
-[sumrecon.sh](./Tools/comprehensive_recon.sh): CLI tool by  that performs comprehensive reconnaissance using assetfinder, amass, certspotter, sublist3r, httprobe, waybackurls, whatweb, nmap, and eyewitness(optional). When I originally added this, I had no idea it's just Grimmie's [sumrecon](https://github.com/Gr1mmie/sumrecon) script.
+[sumrecon.sh](./Tools/sumrecon.sh): CLI tool by  that performs comprehensive reconnaissance using assetfinder, amass, certspotter, sublist3r, httprobe, waybackurls, whatweb, nmap, and eyewitness(optional). When I originally added this, I had no idea it's just Grimmie's [sumrecon](https://github.com/Gr1mmie/sumrecon) script.
 
 <!-- </details> -->
 
