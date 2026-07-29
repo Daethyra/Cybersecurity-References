@@ -84,7 +84,7 @@ A collection of my scripts I've found repeated use for in multiple scenarios.
 
 [`Reset-DockerWslIntergration.ps1`](./Tools/Reset-DockerWslIntegration.ps1): PowerShell script that stops Docker Desktop, Stops WSL, and Unregisters the Docker Destop data.
 
-[sumrecon.sh](./Tools/comprehensive_recon.sh): CLI tool by  that performs comprehensive reconnaissance using assetfinder, amass, certspotter, sublist3r, httprobe, waybackurls, whatweb, nmap, and eyewitness(optional). When I originally added this, I had no idea it's just Grimmie's [sumrecon](https://github.com/Gr1mmie/sumrecon) script.
+[sumrecon.sh](./Tools/sumrecon.sh): CLI tool by  that performs comprehensive reconnaissance using assetfinder, amass, certspotter, sublist3r, httprobe, waybackurls, whatweb, nmap, and eyewitness(optional). When I originally added this, I had no idea it's just Grimmie's [sumrecon](https://github.com/Gr1mmie/sumrecon) script.
 
 <!-- </details> -->
 

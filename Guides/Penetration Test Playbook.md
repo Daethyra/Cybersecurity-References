@@ -18,7 +18,7 @@ See [External Reconnaissance](../2.%20Scanning%20and%20Enumeration/External%20Re
 	1. list shares via: `smbclient -L \\192.168.1.42\`
 		1. try anonymous connection on existing shares: `smbclient \\192.168.1.42\IPCS$`
 # Exploitation
-See [Active Directory Playbook](../3.%20Gaining%20Access%20and%20Persistence/Post%20Compromise/Active%20Directory%20Playbook.md)'s Windows Active Directory Recon section for explicit information on pwning services, not people.
+See [Active Directory Playbook](/Guides/Post%20Compromise/Active%20Directory%20Playbook.md)'s Windows Active Directory Recon section for explicit information on pwning services, not people.
 ## Common Initial Foothold
 >Most initial footholds are gained by malicious email attachments or exploits against the user's browser.
 #### Example workflow:
