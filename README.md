@@ -30,8 +30,6 @@ Favorite Resources: [Active Directory Playbook](./Guides/Post%20Compromise/Activ
 - [Active Directory Lab Write Up](./Guides/Active%20Directory%20Lab%20Write%20Up.md)
 - [Search Engines for Pentesters](./Guides/Search_Engines_for_Pentesters.jpg)
 - [Subverting Intrusion Detection Systems w/ Nmap](./Guides/Subverting%20Intrusion%20Detection%20Systems.md)
-
-
 - [Evasion & Data Exfiltration](./Guides/Evasion%20and%20Data%20Exfiltration/)
   - [Encrypted Powershell](./Guides/Evasion%20and%20Data%20Exfiltration/Encrypted%20PowerShell.md)
   - [Abusing WinDef Exclusions to Evade Detection](./Guides/Evasion%20and%20Data%20Exfiltration/Abusing%20Exclusions%20To%20Evade%20Detection%20_%20Dazzy%20Ddos.pdf)
@@ -39,6 +37,8 @@ Favorite Resources: [Active Directory Playbook](./Guides/Post%20Compromise/Activ
   - [LDAP](./Guides/Initial%20Foothold/LDAP.md)
   - [MSFVenom Payload Generation](./Guides/Initial%20Foothold/Payload%20Generation%20-%20MSFVenom.md)
   - [Cloudflare to Bypass Cloudflare](./Guides/Initial%20Foothold/Using%20Cloudflare%20to%20bypass%20Cloudflare%20–%20Certitude%20Blog.pdf)
+- [IoT Devices](./Guides/IoT/)
+  - [Beginner's Guide](./guides/IoT/Beginners%20Guide.pdf)
 - [Metasploit](./Guides/Metasploit%20Framework/)
 - [Networking](./Guides/Networking/)
 - [Post Compromise](./Guides/Post%20Compromise/)
